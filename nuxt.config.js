@@ -1,27 +1,11 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: 'ifa-trips-front',
-    htmlAttrs: {
-      lang: 'en',
-    },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-    ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
-  },
-
   // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [],
-
+  css: ['~assets/scss/main.scss'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
 
   env: {
-    backUrl: process.env.BACK_URL
+    backUrl: process.env.BACK_URL,
   },
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -31,7 +15,17 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
     '@nuxtjs/tailwindcss',
+    '@nuxtjs/google-fonts',
   ],
+  googleFonts: {
+    families: {
+      "Fugaz One": true,
+      "Inter": true,
+    },
+    download: true,
+    stylePath: 'css/fonts.css'
+    
+  },
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [

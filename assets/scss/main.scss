@@ -1,0 +1,11 @@
+body {
+  --orange: #ec6834;
+  --blue: #161d39;
+  --white: #f6f6f6;
+}
+
+body {
+  background-color: var(--blue);
+  color: var(--white);
+  font-size: 16px;
+}
