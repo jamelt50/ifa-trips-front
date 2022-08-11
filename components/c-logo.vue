@@ -1,6 +1,6 @@
 <template>
       <div class="logo text-center">
-      <nuxt-link class="text-4xl" to="/"><span>IFA</span> Trips</nuxt-link>
+      <nuxt-link class="text-2xl md:text-4xl" to="/"><span>IFA</span> Trips</nuxt-link>
     </div>
 </template>
 

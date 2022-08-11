@@ -56,6 +56,7 @@
 import UserService from '../services/UserService.js'
 export default {
   name: 'IndexPage',
+  middleware: 'auth',
   data() {
     return { currentTab: 1 }
   },

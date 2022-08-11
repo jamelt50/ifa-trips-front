@@ -1,5 +1,6 @@
 <template>
-  <div class="flex flex-col justify-center items-center pt-14 px-10">
+<c-container>
+  <div class="flex flex-col justify-center items-center pt-14">
     <h1 class="text-6xl text-center mb-16 font-bold">Voyager Meilleur!</h1>
     <div class="w-full">
       <svg
@@ -941,6 +942,7 @@
       />
     </div>
   </div>
+</c-container>
 </template>
 
 <script>

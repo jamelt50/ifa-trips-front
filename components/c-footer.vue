@@ -1,5 +1,6 @@
 <template>
-  <div class="bg-dark-blue md:flex justify-between py-6 px-10">
+<c-container bg="bg-dark-blue">
+  <div class="md:flex justify-between py-6">
     <c-logo class="mt-6 md:mt-0"></c-logo>
     <div
       class="
@@ -32,6 +33,7 @@
       </div>
     </div>
   </div>
+</c-container>
 </template>
 
 <script>

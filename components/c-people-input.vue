@@ -6,7 +6,7 @@
     >
       <img class="w-6 mr-2" src="/avatar.svg" /> <span>{{ people }}</span>
     </button>
-
+<transition name="pop-up">
     <div
       v-if="peopleInputOpen"
       class="
@@ -43,6 +43,7 @@
         </button>
       </div>
     </div>
+</transition>
   </div>
 </template>
 

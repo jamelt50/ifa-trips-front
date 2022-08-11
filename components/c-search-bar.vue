@@ -1,26 +1,24 @@
 <template>
   <div
     class="
-      lg:flex
+      md:flex
       justify-center
-      lg:justify-between
+      md:justify-between
       items-center
       rounded-2xl
       bg-white
       text-dark-blue
       search-bar
-      max-w-sm
-      w-3/4
-      md:max-w-6xl
+      w-full
     "
   >
-    <div class="pt-6 pl-6 pr-6 lg:pt-0 lg:pr-0 lg:flex lg:flex-grow">
-      <div class="place relative mb-2 lg:mb-0 lg:flex-grow">
+    <div class="pt-6 pl-6 pr-6 md:pt-0 md:pr-0 md:flex md:flex-grow">
+      <div class="place relative mb-2 md:mb-0 md:flex-grow">
         <input
           class="
             bg-transparent
             border-b border-blue
-            lg:border-0
+            md:border-0
             outline-none
             pl-6
             w-full
@@ -32,12 +30,12 @@
           type="text"
         />
       </div>
-      <div class="place relative lg:flex-grow">
+      <div class="place relative md:flex-grow">
         <input
           class="
             bg-transparent
             border-b border-blue
-            lg:border-0
+            md:border-0
             outline-none
             pl-6
             w-full
@@ -49,8 +47,8 @@
           type="text"
         />
       </div>
-      <div class="flex py-2 lg:p-0 lg:flex-grow-0">
-        <div class="flex flex-grow lg:flex-grow-0">
+      <div class="flex py-2 md:p-0 md:flex-grow-0">
+        <div class="flex flex-grow md:flex-grow-0">
           <img class="w-4" src="/calendar.svg" />
           <input
             class="
@@ -59,21 +57,21 @@
               outline-none
               flex-grow
               h-12
-              lg:h-auto
+              md:h-auto
               py-3
-              lg:py-2
+              md:py-2
               px-2
             "
             placeholder="Aujourd'hui"
             ref="datePicker"
           />
         </div>
-<c-people-input />
+        <c-people-input />
       </div>
     </div>
-    
+
     <c-button
-      classes="px-6 py-1 lg:px-14 lg:py-2 w-full lg:w-auto  rounded-bl-2xl rounded-br-2xl lg:rounded-tr-2xl lg:rounded-bl-none  lg:h-full lg:flex-grow-0"
+      classes="px-6 py-1 lg:px-14 md:py-2 w-full md:w-auto  rounded-bl-2xl rounded-br-2xl md:rounded-tr-2xl md:rounded-bl-none  md:h-full md:flex-grow-0"
       color="orange"
       >Rechercher</c-button
     >

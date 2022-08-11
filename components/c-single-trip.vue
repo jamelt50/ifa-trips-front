@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white rounded-2xl p-8 w-full my-6 text-blue hover:scale-105 transform cursor-pointer transition-all max-w-3xl">
+  <div class="bg-white rounded-2xl p-8 w-full my-6 text-blue hover:opacity-90 cursor-pointer transition-all max-w-3xl z-0">
     <div class="flex justify-between items-center">
       <div class="w-3/4 flex justify-between items-center">
         <div><h2 class="text-xl font-bold">Paris</h2></div>

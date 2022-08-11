@@ -1,5 +1,6 @@
 <template >
-  <div class="flex flex-col justify-center items-center bg-white py-14 px-6 text-blue">
+<c-container bg="bg-white">
+  <div class="flex flex-col justify-center items-center  py-14 px-6 text-blue">
     <div class="md:flex justify-center items-center mb-6">
       <div class="md:w-1/3 md:mx-3">
         <img class="mb-6" src="/coin.svg" alt="icone pieces" />
@@ -21,6 +22,7 @@
     </div>
     <c-button classes="px-6 py-1 rounded-2xl" color="blue">Proposer Votre Trajet</c-button>
   </div>
+</c-container>
 </template>
 
 <script>

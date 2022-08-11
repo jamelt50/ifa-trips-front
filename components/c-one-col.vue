@@ -1,6 +1,7 @@
 <template >
+<c-container bg="bg-blue">
   <div
-    class="flex flex-col justify-center items-center bg-blue py-28 px-6 text-white text-center"
+    class="flex flex-col justify-center items-center  py-28 text-white text-center"
   >
     <div class="flex justify-center items-center mb-6 w-full">
       <div class="md:w-2/3 mx-3">
@@ -15,6 +16,7 @@
       <c-button classes="px-6 py-1 mx-3 rounded-2xl" color="white" class="w-full md:w-auto">S’inscrire</c-button>
     </div>
   </div>
+</c-container>
 </template>
 
 <script>
