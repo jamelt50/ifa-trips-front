@@ -6,6 +6,7 @@ export default {
 
   env: {
     backUrl: process.env.BACK_URL,
+    GEO_API_URL: process.env.GEO_API_URL,
   },
   head: {
     meta: [
@@ -14,8 +15,15 @@ export default {
     ],
   },
   // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
+  components: {
+    dirs: [
+      '~/components',
+      '~/components/form-input',
+      '~/components/forms',
+      '~/components/partials',
+      '~/components/utils',
+    ],
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/tailwindcss
@@ -32,26 +40,22 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    '@nuxtjs/auth-next',
-  ],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next'],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.BACK_URL,
   },
   auth: {
-  cookie: {
-    options: {
-      expires: 1
-    }
-  },
+    // cookie: {
+    //   options: {
+    //     maxAge: 86,
+    //   },
+    // },
     redirect: {
       login: '/connexion',
       logout: '/',
       callback: '/connexion',
-      home: '/trajets',
+      home: '/trajets/search',
     },
 
     strategies: {
@@ -59,12 +63,10 @@ export default {
         token: {
           property: 'token',
           global: true,
-          // required: true,
-          // type: 'Bearer'
+          maxAge: 86000,
         },
         user: {
           property: 'user',
-          // autoFetch: true
         },
         endpoints: {
           login: { url: '/login', method: 'post' },
@@ -74,7 +76,6 @@ export default {
       },
     },
   },
-
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},

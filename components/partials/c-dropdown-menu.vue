@@ -18,7 +18,7 @@
       <div
         class="
           absolute
-          -bottom-40
+          top-full
           right-0
           bg-white
           text-blue
@@ -27,6 +27,8 @@
           rounded-2xl
           max-w-sm
           shadow-xl
+          transform
+          translate-y-3
           dropdown-menu__dropdown
         "
         v-if="dropdownOpen"
@@ -41,7 +43,7 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="trajets">Messages</nuxt-link>
+              <nuxt-link class="py-2 block" to="/profile">Profile</nuxt-link>
             </li>
             <li
               class="
@@ -51,7 +53,19 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="trajets">Messages</nuxt-link>
+              <nuxt-link class="py-2 block" to="/messages">Messages</nuxt-link>
+            </li>
+            <li
+              class="
+                hover:border-orange
+                transition-all
+                hover:text-orange
+                dropdown-menu__item
+              "
+            >
+              <nuxt-link class="py-2 block" to="/reservations"
+                >Reservations</nuxt-link
+              >
             </li>
             <li
               class="

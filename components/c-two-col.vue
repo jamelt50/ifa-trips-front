@@ -1,5 +1,5 @@
 <template >
-<c-container bg="bg-white">
+<c-container classes="bg-white">
   <div class="flex flex-col justify-center items-center  py-14 px-6 text-blue">
     <div class="md:flex justify-center items-center mb-6">
       <div class="md:w-1/3 md:mx-3">

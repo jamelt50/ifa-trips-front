@@ -1,5 +1,10 @@
 // tailwind.config.js
 module.exports = {
+  variants: {
+    extend: {
+      translate: ['group-hover'],
+    }
+  },
   theme: {
     extend: {
       colors: {

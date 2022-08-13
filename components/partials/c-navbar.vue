@@ -38,7 +38,7 @@
             <nuxt-link class="text-xl" to="/">Acceuil</nuxt-link>
           </li>
           <li class="mx-4 cursor-pointer hover:text-orange transition-all">
-            <nuxt-link class="text-xl" to="/trajets">Trajets</nuxt-link>
+            <nuxt-link class="text-xl" to="/trajets/search">Trajets</nuxt-link>
           </li>
           <li
             v-if="!$auth.loggedIn"

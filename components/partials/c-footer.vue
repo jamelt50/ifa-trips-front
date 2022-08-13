@@ -1,5 +1,5 @@
 <template>
-<c-container bg="bg-dark-blue">
+<c-container classes="bg-dark-blue">
   <div class="md:flex justify-between py-6">
     <c-logo class="mt-6 md:mt-0"></c-logo>
     <div
