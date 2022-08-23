@@ -15,7 +15,7 @@
     method="POST"
   >
     <div class="flex flex-col justify-center items-center">
-      <c-image-input v-model="formData.image" />
+      <c-image-input v-model="formData.profile_pic" />
       <h1 class="text-xl font-bold my-3">
         {{ `${$auth.user.surname} ${$auth.user.name}` }}
       </h1>
@@ -75,7 +75,7 @@ export default {
   data() {
     return {
       formData: {
-        image: null,
+        profile_pic: null,
         name: '',
         surname: '',
         password: '',
@@ -86,9 +86,15 @@ export default {
   },
   methods: {
     async updateUser() {
+      let formData = new FormData();
+      for (const key in this.formData){
+      formData.append(key,this.formData[key])
+      }
+
       this.updating = true
-      const result = await this.$axios.post('/profile/update', this.formData)
-      console.log(result.data)
+      this.$axios.setHeader('Content-Type', 'multipart/formdata')
+      const result = await this.$axios.$post('/profile/update',formData)
+
       this.updating = false
     },
   },

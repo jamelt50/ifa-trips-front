@@ -12,7 +12,7 @@
       "
       :style="{
         'background-image': `url(${
-          previewImage ? previewImage : $auth.user.profile_pic
+          previewImage ? previewImage: $auth.user.profile_pic
         })`,
       }"
       @click="selectImage"
@@ -21,7 +21,6 @@
     <input class="hidden" ref="fileInput" type="file" @input="pickFile" />
   </div>
 </template>
- 
 <script>
 export default {
   props: ['default'],
@@ -40,7 +39,7 @@ export default {
       if (file && file[0]) {
         let reader = new FileReader()
         reader.onload = (e) => {
-          this.previewImage = e.target.result
+          this.previewImage =  e.target.result
         }
         reader.readAsDataURL(file[0])
         this.$emit('input', file[0])

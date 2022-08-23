@@ -4,8 +4,14 @@
       class="flex justify-between items-center"
       @click="dropdownOpen = !dropdownOpen"
     >
-      <div class="bg-white p-1 md:p-2 rounded-full">
-        <img src="/avatar.svg" />
+      <div
+        v-if="$auth.user.profile_pic"
+        class="bg-white rounded-full overflow-hidden"
+      >
+        <img class="w-10 h-10" :src="$auth.user.profile_pic" />
+      </div>
+      <div v-else class="bg-white p-1 md:p-2 rounded-full">
+        <img class="w-10 h-10" src="/avatar.svg" />
       </div>
 
       <img
@@ -43,7 +49,7 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/profile">Profile</nuxt-link>
+              <nuxt-link class="py-2 block" to="/profile">Mon Profile</nuxt-link>
             </li>
             <li
               class="
@@ -53,7 +59,7 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/messages">Messages</nuxt-link>
+              <nuxt-link class="py-2 block" to="/messages">Mes messages</nuxt-link>
             </li>
             <li
               class="
@@ -64,7 +70,19 @@
               "
             >
               <nuxt-link class="py-2 block" to="/reservations"
-                >Reservations</nuxt-link
+                >Mes reservations</nuxt-link
+              >
+            </li>
+            <li
+              class="
+                hover:border-orange
+                transition-all
+                hover:text-orange
+                dropdown-menu__item
+              "
+            >
+              <nuxt-link class="py-2 block" to="/trajets/mes-trajets"
+                >Mes trajets</nuxt-link
               >
             </li>
             <li
@@ -97,6 +115,12 @@ export default {
     async logout() {
       await this.$auth.logout()
       this.$router.push('/connexion')
+    },
+  },
+
+  watch: {
+    $route(to, from) {
+      this.dropdownOpen = false
     },
   },
   mounted() {

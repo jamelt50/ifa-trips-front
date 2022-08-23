@@ -1,6 +1,8 @@
 <template>
-  <div
+  <nuxt-link
+    :to="'/trajets/details/' + trip.id"
     class="
+      block
       bg-white
       rounded-2xl
       p-8
@@ -15,27 +17,19 @@
     "
   >
     <div class="flex justify-between items-center">
-      <div class="w-3/4 flex justify-between items-center">
-        <div>
-          <h2 class="text-xl font-bold">{{ from.nom }}</h2>
-        </div>
-        <div>
-          <h2 class="text-xl font-bold">{{ to.nom }}</h2>
-        </div>
+      <div class="w-3/4">
+        <c-trip-from-to :from="from.nom" :to="to.nom" />
       </div>
-      <div><span class="text-xl font-bold">{{ trip.price }}€</span></div>
+
+      <div>
+        <span class="text-xl font-bold">{{ trip.price }}€</span>
+      </div>
     </div>
     <div class="flex justify-between items-center mt-10">
-      <div class="flex justify-between items-center">
-        <img src="/avatar-filled.svg" />
-        <h3 class="mx-3 text-2xl font-bold">Virginie</h3>
-      </div>
-      <div class="flex justify-between items-center">
-        <img src="/available.svg" />
-        <h3 class="mx-3 text-2xl font-bold">{{ trip.seats }}</h3>
-      </div>
+      <c-trip-driver :driver="trip.driver" />
+      <c-seats-indicator :seats="trip.seats" />
     </div>
-  </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -60,5 +54,4 @@ export default {
 }
 </script>
 
-<style>
-</style>
+<style></style>

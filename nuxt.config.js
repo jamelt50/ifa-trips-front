@@ -22,6 +22,7 @@ export default {
       '~/components/forms',
       '~/components/partials',
       '~/components/utils',
+      '~/components/trips',
     ],
   },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

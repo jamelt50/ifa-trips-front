@@ -26,7 +26,7 @@
           <c-search-bar :searched="searched" class="mx-auto" />
         </div>
 
-        <c-single-trip
+        <c-trip-item
           class="mx-auto"
           v-for="trip in trips"
           :key="trip.id"
@@ -40,6 +40,7 @@
 <script>
 export default {
   transition: 'page',
+  watchQuery: true,
 
   async asyncData({ query, $axios }) {
     const searched = {
@@ -50,13 +51,13 @@ export default {
     }
     let trips
     if (!Object.values(searched).some((x) => x === null || x === '' ||x === undefined)) {
-      trips = await $axios.$get('/search', {
+      trips = await $axios.$get('/trips/search', {
         params: searched,
       })
     } else {
       trips = { search: [] }
     }
-
+console.log(trips);
     return { trips: trips.search, searched }
   },
 }
