@@ -12,8 +12,8 @@
       </div>
     </div>
     <div>
-      <c-button classes="px-6 py-1 mx-3 mb-5 rounded-2xl" color="orange" class="w-full md:w-auto">Se Connecter</c-button>
-      <c-button classes="px-6 py-1 mx-3 rounded-2xl" color="white" class="w-full md:w-auto">S’inscrire</c-button>
+      <c-button color="orange" class="w-full md:w-auto">Se Connecter</c-button>
+      <c-button color="white" class="w-full md:w-auto">S’inscrire</c-button>
     </div>
   </div>
 </c-container>

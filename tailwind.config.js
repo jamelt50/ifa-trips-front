@@ -2,7 +2,7 @@
 module.exports = {
   variants: {
     extend: {
-      translate: ['group-hover'],
+      translate: ['group-hover']
     }
   },
   theme: {

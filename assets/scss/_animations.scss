@@ -16,3 +16,22 @@
   transform: translateY(5px) scale(0.95);
   opacity: 0;
 }
+
+.switch-enter-active,
+.switch-leave-active {
+  transition: all 0.4s;
+}
+.switch-enter,
+.switch-leave-to {
+  transform: translatex(100%);
+  opacity: 0;
+}
+.mobile-nav-fade-enter-active,
+.mobile-nav-fade-leave-active {
+  transition: all 0.4s ease-in-out;
+}
+
+.mobile-nav-fade-enter,
+.mobile-nav-fade-leave-to {
+  transform: translateX(-100%);
+}

@@ -11,14 +11,18 @@
         Prix par passager: <span class="font-bold">{{ trip.price }}€</span>
       </p>
     </div>
+<div><p>{{trip.description}}</p></div>
     <div class="flex justify-between items-center">
       <div class="flex items-center">
-        <c-trip-driver :driver="trip.driver" />
+        <c-person :person="trip.driver" />
         <c-seats-indicator :seats="trip.seats" />
       </div>
 
       <div class="flex items-center">
-        <c-button class="py-2 px-3 mx-2 rounded-2xl" color="orange"
+        <c-button
+          @clicked="reserveTrip"
+          class="py-2 px-3 mx-2 rounded-2xl"
+          color="orange"
           >Resever</c-button
         >
         <c-button class="py-2 px-3 rounded-2xl" color="blue"
@@ -32,6 +36,15 @@
 <script>
 export default {
   props: { trip: Object },
+  methods: {
+    async reserveTrip() {
+      if (this.$auth.loggedIn) {
+        const reservation = await this.$axios.$post(`/trips/reserve/${this.trip.id}`)
+      } else {
+        this.$router.push('/connexion')
+      }
+    },
+  },
 }
 </script>
 

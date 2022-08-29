@@ -10,7 +10,7 @@
     "
   >
     <div class="flex justify-between items-center w-full">
-      <c-button @click.prevent="$router.back()" color="orange py-2 px-4 rounded-2xl flex items-center"
+      <c-button class="flex justify-center items-center" @click="$router.back()" color="orange"
         ><img class="pr-3" src="/back-arrow.svg" alt="" /> Retour</c-button
       >
       <h1

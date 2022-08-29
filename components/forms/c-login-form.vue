@@ -20,7 +20,6 @@
       name="password"
     />
     <c-button
-      classes="px-6 py-1 my-3 rounded-2xl"
       color="orange"
       class="w-full md:w-auto"
       >Se Connecter</c-button

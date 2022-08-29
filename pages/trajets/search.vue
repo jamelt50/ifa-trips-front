@@ -57,7 +57,6 @@ export default {
     } else {
       trips = { search: [] }
     }
-console.log(trips);
     return { trips: trips.search, searched }
   },
 }

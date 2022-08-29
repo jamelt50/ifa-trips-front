@@ -1,13 +1,8 @@
 <template>
   <c-padding class="min-h-screen flex justify-center items-center">
     <div class="w-full max-w-6xl bg-white text-blue p-6 rounded-2xl">
-      <div class="mb-3">
-        <c-button @clicked="$router.push('/trajets/cree')" color="orange">{{
-          'Proposer'
-        }}</c-button>
-      </div>
 
-      <c-trip-listing :trips="trips" />
+      <c-reservation-listing :reservations="reservations" />
     </div>
   </c-padding>
 </template>
@@ -17,8 +12,9 @@ export default {
   transition: 'page',
   middleware: 'auth',
   async asyncData({ $axios }) {
-    const trips = await $axios.$get('/trips/my-trips')
-    return { trips }
+    const reservations = await $axios.$get('/reservations/my-reservations')
+console.log(reservations);
+    return { reservations }
   },
 }
 </script>

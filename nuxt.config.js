@@ -23,6 +23,7 @@ export default {
       '~/components/partials',
       '~/components/utils',
       '~/components/trips',
+      '~/components/reservations',
     ],
   },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

@@ -20,7 +20,7 @@
         </p>
       </div>
     </div>
-    <c-button classes="px-6 py-1 rounded-2xl" color="blue">Proposer Votre Trajet</c-button>
+    <c-button color="blue">Proposer Votre Trajet</c-button>
   </div>
 </c-container>
 </template>

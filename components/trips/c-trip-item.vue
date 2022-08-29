@@ -26,7 +26,7 @@
       </div>
     </div>
     <div class="flex justify-between items-center mt-10">
-      <c-trip-driver :driver="trip.driver" />
+      <c-person :person="trip.driver" />
       <c-seats-indicator :seats="trip.seats" />
     </div>
   </nuxt-link>

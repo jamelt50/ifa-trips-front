@@ -42,6 +42,9 @@
         <nav>
           <ul>
             <li
+              :class="{
+                'text-orange': $router.currentRoute.path == '/profile',
+              }"
               class="
                 hover:border-orange
                 transition-all
@@ -49,9 +52,14 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/profile">Mon Profile</nuxt-link>
+              <nuxt-link class="py-2 block" to="/profile"
+                >Mon Profile</nuxt-link
+              >
             </li>
             <li
+              :class="{
+                'text-orange': $router.currentRoute.path == '/messages',
+              }"
               class="
                 hover:border-orange
                 transition-all
@@ -59,9 +67,15 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/messages">Mes messages</nuxt-link>
+              <nuxt-link class="py-2 block" to="/messages"
+                >Mes messages</nuxt-link
+              >
             </li>
             <li
+              :class="{
+                'text-orange':
+                  $router.currentRoute.path == '/reservations/mes-reservations',
+              }"
               class="
                 hover:border-orange
                 transition-all
@@ -69,11 +83,15 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/reservations"
+              <nuxt-link class="py-2 block" to="/reservations/mes-reservations"
                 >Mes reservations</nuxt-link
               >
             </li>
             <li
+              :class="{
+                'text-orange':
+                  $router.currentRoute.path == '/trajets/mes-trajets',
+              }"
               class="
                 hover:border-orange
                 transition-all
