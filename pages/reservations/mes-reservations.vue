@@ -13,7 +13,6 @@ export default {
   middleware: 'auth',
   async asyncData({ $axios }) {
     const reservations = await $axios.$get('/reservations/my-reservations')
-console.log(reservations);
     return { reservations }
   },
 }

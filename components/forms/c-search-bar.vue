@@ -68,6 +68,7 @@
     </div>
 
     <c-button
+      :rounded="false"
       class="
         px-14
         py-2

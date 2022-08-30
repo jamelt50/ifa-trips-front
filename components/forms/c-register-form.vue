@@ -73,7 +73,6 @@ export default {
         let response = await this.$auth.loginWith('local', {
           data: this.formData,
         })
-        console.log(response)
       } catch (err) {
         console.log(err)
       }

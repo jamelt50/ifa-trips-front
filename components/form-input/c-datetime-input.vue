@@ -1,17 +1,8 @@
 <template>
-  <div class="flex">
+  <div class="flex h-10">
     <img class="w-4 ml-2" src="/calendar.svg" />
     <input
-      class="
-        outline-none
-        flex-grow
-        h-12
-        md:h-auto
-        py-3
-        md:py-2
-        pl-3
-        bg-transparent
-      "
+      class="outline-none flex-grow h-full py-2 pl-3 bg-transparent"
       v-model="date"
       @change="handleInput($refs.datePicker.value)"
       placeholder="Aujourd'hui"
@@ -24,7 +15,7 @@
 import flatpickr from 'flatpickr'
 import 'flatpickr/dist/themes/dark.css'
 export default {
-  props: ['default','full'],
+  props: ['default', 'full'],
   data() {
     return { date: '' }
   },
@@ -35,8 +26,8 @@ export default {
   },
   mounted() {
     flatpickr(this.$refs.datePicker, {
-      dateFormat: this.full ? "Y-m-d H:i":"Y-m-d",
-      enableTime:this.full ? true:false,
+      dateFormat: this.full ? 'Y-m-d H:i' : 'Y-m-d',
+      enableTime: this.full ? true : false,
       defaultDate: this.default ? this.default : 'today',
       minDate: 'today',
     })

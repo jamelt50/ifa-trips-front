@@ -3,7 +3,7 @@
     :disabled="disabled"
     @click="$emit('clicked')"
     :class="
-      'font-bold text-xl hover:opacity-90 transition-all px-6 py-1 rounded-2xl ' + color"
+      'font-bold text-xl hover:opacity-90 transition-all px-6 py-1 ' + color + (rounded ? ' rounded-2xl':'')"
   >
     <slot></slot>
   </button>
@@ -15,6 +15,7 @@ export default {
     color: { type: String },
     classes: { type: String },
     disabled: { type: Boolean },
+    rounded:{type:Boolean,default:true}
   },
 }
 </script>

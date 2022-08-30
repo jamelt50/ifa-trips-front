@@ -54,28 +54,29 @@
               <span class="mx-3">Status:</span>
               <c-button
                 v-if="reservation.state == 'pending'"
-                @click="cancel(activeTrip)"
+                @clicked="cancel(activeTrip)"
                 color="red"
                 >Annuler</c-button
               >
+
               <c-button
                 v-if="reservation.state == 'pending'"
-                @click="accept(activeTrip)"
+                @clicked="accept(activeTrip)"
                 color="green"
                 class="ml-2"
                 >Accepter</c-button
               >
-              <c-button
+              <c-state
                 v-if="reservation.state == 'canceled'"
                 color="red-outline"
                 class="mr-2"
-                >Annuler</c-button
+                >Annuler</c-state
               >
-              <c-button
+              <c-state
                 v-if="reservation.state == 'accepted'"
                 color="outline"
                 class="ml-2"
-                >Accepté</c-button
+                >Accepté</c-state
               >
             </div>
           </li>

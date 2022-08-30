@@ -10,7 +10,10 @@
     "
   >
     <div class="flex justify-between items-center w-full">
-      <c-button class="flex justify-center items-center" @click="$router.back()" color="orange"
+      <c-button
+        class="flex justify-center items-center"
+        @clicked="$router.back()"
+        color="orange"
         ><img class="pr-3" src="/back-arrow.svg" alt="" /> Retour</c-button
       >
       <h1
@@ -32,7 +35,7 @@
         }}
       </h1>
     </div>
-    <c-trip-details :trip="trip" />
+    <c-trip-details :from="from" :to="to" :trip="trip" />
   </c-padding>
 </template>
 
@@ -43,15 +46,13 @@ export default {
   async asyncData({ $axios, route }) {
     const id = route.params.id
     const trip = await $axios.$get('/trips/find/' + id)
-    const from = await $axios.get(
-      process.env.GEO_API_URL + 'communes/' + trip.from_city_id
+    const from = await $axios.$get(
+      `${process.env.GEO_API_URL}communes/${trip.from_city_id}?fields=centre`
     )
-    const to = await $axios.get(
-      process.env.GEO_API_URL + 'communes/' + trip.to_city_id
+    const to = await $axios.$get(
+      `${process.env.GEO_API_URL}communes/${trip.to_city_id}?fields=centre`
     )
-    trip.from = from.data
-    trip.to = to.data
-    return { trip }
+    return { trip,to:to.centre.coordinates,from:from.centre.coordinates }
   },
 }
 </script>

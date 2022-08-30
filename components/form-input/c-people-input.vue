@@ -1,5 +1,5 @@
 <template>
-  <div class="flex-grow-0 cursor-pointer relative people-input">
+  <div class="flex-grow-0 cursor-pointer relative people-input h-10">
     <button
       class="flex justify-between items-center px-4 h-full hover:opacity-80"
       @click="peopleInputOpen = !peopleInputOpen"

@@ -41,23 +41,23 @@
         <c-seats-indicator :seats="activeReservation.trip.seats" />
         <div class="flex justify-between items-center">
           <span class="mx-3">Status:</span>
-          <c-button
+          <c-state
             v-if="activeReservation.state == 'pending'"
             color="outline"
             class="mr-2"
-            >Attente</c-button
+            >Attente</c-state
           >
-          <c-button
+          <c-state
             v-if="activeReservation.state == 'accepted'"
             color="green-outline"
             class="mr-2"
-            >Accepté</c-button
+            >Accepté</c-state
           >
-          <c-button
+          <c-state
             v-if="activeReservation.state == 'canceled'"
             color="red-outline"
             class="mr-2"
-            >Annuler</c-button
+            >Annuler</c-state
           >
           <c-button
             v-if="activeReservation.state == 'pending'"
@@ -65,6 +65,7 @@
             color="red"
             >Annuler</c-button
           >
+
         </div>
       </div>
     </div>

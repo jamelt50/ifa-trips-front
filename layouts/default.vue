@@ -8,9 +8,7 @@
 
 <script>
 export default {
-mounted(){
-// console.log(this.$auth.strategy.refreshToken.status());
-}
+
 }
 </script>
 

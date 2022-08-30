@@ -4,7 +4,7 @@
     <input
       v-if="!isTextarea"
       :placeholder="placeholder"
-      :class="'rounded-2xl h-9 px-6 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80 ' + color"
+      :class="'rounded-2xl h-10 px-6 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80 ' + color"
       :type="type"
       :name="name"
       autocomplete="new-password"
