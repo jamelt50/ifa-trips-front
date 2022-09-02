@@ -5,7 +5,7 @@ export default {
   plugins: [],
 
   env: {
-    backUrl: process.env.BACK_URL,
+    BACK_URL: process.env.BACK_URL,
     GEO_API_URL: process.env.GEO_API_URL,
   },
   head: {
@@ -24,6 +24,7 @@ export default {
       '~/components/utils',
       '~/components/trips',
       '~/components/reservations',
+      '~/components/messages',
     ],
   },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules

@@ -1,5 +1,5 @@
 <template>
-  <div class="relative dropdown-menu">
+  <div class="relative justify-center items-center flex dropdown-menu">
     <button
       class="flex justify-between items-center"
       @click="dropdownOpen = !dropdownOpen"

@@ -26,47 +26,39 @@
               color="orange"
               >Resever</c-button
             >
-            <c-button class="py-2 px-3 rounded-2xl" color="blue"
+            <c-button
+              @clicked="modalOpen = true"
+              class="py-2 px-3 rounded-2xl"
+              color="blue"
               >Contacter</c-button
             >
           </div>
         </div>
       </div>
-      <div id="map-wrap" class="h-96 overflow-hidden rounded-2xl w-1/2">
-        <client-only>
-          <l-map
-            :zoom="13"
-            :bounds="[
-              [to[1], to[0]],
-              [from[1], from[0]],
-            ]"
-          >
-            <l-tile-layer
-              url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"
-            ></l-tile-layer>
-            <l-marker :lat-lng="[to[1], to[0]]">
-              <l-icon :iconSize="['42']" icon-url="/place.svg"
-            /></l-marker>
-            <l-marker :lat-lng="[from[1], from[0]]"
-              ><l-icon :iconSize="['42']" icon-url="/place.svg"
-            /></l-marker>
-            <l-polyline
-              :lat-lngs="[
-                [to[1], to[0]],
-                [from[1], from[0]],
-              ]"
-              color="#EC6834"
-            ></l-polyline>
-          </l-map>
-        </client-only>
-      </div>
+      <c-trip-map
+        class="w-1/2"
+        :from_city_id="trip.from_city_id"
+        :to_city_id="trip.to_city_id"
+      />
+      <transition name="pop-up">
+        <c-message-modal
+          @close="modalOpen = false"
+          :trip="trip"
+          v-if="modalOpen"
+        />
+      </transition>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: { trip: Object, from: Array, to: Array },
+  props: { trip: Object },
+  data() {
+    return {
+      modalOpen: false,
+    }
+  },
   methods: {
     async reserveTrip() {
       if (this.$auth.loggedIn) {

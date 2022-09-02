@@ -22,13 +22,14 @@
           </button>
         </li>
       </ul>
-      <div v-else><p>Vous n'avez pas encore crée de trajets</p></div>
+      <div v-else><p>Vous n'avez pas encore de réervation</p></div>
     </div>
     <div v-if="activeReservation" class="w-3/4 px-6 h-full overflow-scroll">
       <c-trip-from-to
         :from="activeReservation.trip.from.name"
         :to="activeReservation.trip.to.name"
       />
+      <c-trip-map :from_city_id="activeReservation.trip.from_city_id" :to_city_id="activeReservation.trip.to_city_id" />
       <div class="flex justify-between items-center my-8">
         <div>
           <span class="text-xl"
@@ -65,7 +66,6 @@
             color="red"
             >Annuler</c-button
           >
-
         </div>
       </div>
     </div>
@@ -79,6 +79,9 @@ export default {
     return {
       activeReservation: null,
     }
+  },
+  mounted() {
+    this.activeReservation = this.reservations ? this.reservations[0]:null
   },
   methods: {
     async cancel(trip) {

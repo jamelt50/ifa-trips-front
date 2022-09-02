@@ -7,7 +7,7 @@
         }}</c-button>
       </div>
 
-      <c-trip-listing :trips="trips" />
+      <c-trip-listing v-if="trips.length" :trips="trips" />
     </div>
   </c-padding>
 </template>

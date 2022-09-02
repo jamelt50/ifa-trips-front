@@ -35,7 +35,7 @@
         }}
       </h1>
     </div>
-    <c-trip-details :from="from" :to="to" :trip="trip" />
+    <c-trip-details :trip="trip" />
   </c-padding>
 </template>
 
@@ -46,13 +46,8 @@ export default {
   async asyncData({ $axios, route }) {
     const id = route.params.id
     const trip = await $axios.$get('/trips/find/' + id)
-    const from = await $axios.$get(
-      `${process.env.GEO_API_URL}communes/${trip.from_city_id}?fields=centre`
-    )
-    const to = await $axios.$get(
-      `${process.env.GEO_API_URL}communes/${trip.to_city_id}?fields=centre`
-    )
-    return { trip,to:to.centre.coordinates,from:from.centre.coordinates }
+
+    return { trip}
   },
 }
 </script>
