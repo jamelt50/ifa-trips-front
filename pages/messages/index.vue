@@ -1,10 +1,20 @@
 <template>
   <div class="min-h-screen flex justify-center items-center">
-    <div class="w-full h-screen max-h-5-6 md:h-auto max-w-6xl bg-white text-blue p-3 md:p-6 md:rounded-2xl">
+    <div
+      class="
+        w-full
+        h-screen
+        max-h-5-6
+        md:h-auto
+        max-w-6xl
+        bg-white
+        text-blue
+        p-3
+        md:p-6 md:rounded-2xl
+      "
+    >
       <client-only>
-        <c-message-conversation-listing
-          :conversations="conversations"
-        />
+        <c-message-conversation-listing :conversations="conversations" />
       </client-only>
     </div>
   </div>
@@ -14,10 +24,14 @@
 export default {
   transition: 'page',
   middleware: 'auth',
-  async asyncData({ $axios, route }) {
-    let conversations = await $axios.$get('/messages/list')
-    return {
-      conversations: conversations,
+  async asyncData({ $axios }) {
+    try {
+      let conversations = await $axios.$get('/messages/list')
+      return {
+        conversations: conversations,
+      }
+    } catch (error) {
+      console.log(error)
     }
   },
 }
@@ -25,6 +39,6 @@ export default {
 
 <style>
 .max-h-5-6 {
-max-height: 80vh;
+  max-height: 80vh;
 }
 </style>

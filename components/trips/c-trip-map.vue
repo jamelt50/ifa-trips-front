@@ -1,9 +1,5 @@
 <template>
-  <div
-    v-if="from && to"
-    id="map-wrap"
-    class=" overflow-hidden rounded-2xl"
-  >
+  <div v-if="from && to" id="map-wrap" class="overflow-hidden rounded-2xl">
     <client-only>
       <l-map
         :zoom="13"
@@ -42,28 +38,28 @@ export default {
       to: null,
     }
   },
-mounted(){
-this.fetch()
-
-},
-updated(){
-this.fetch()
-
-},
-methods:{
-  async fetch() {
-    const from = await this.$axios.$get(
-      `${process.env.GEO_API_URL}communes/${this.from_city_id}?fields=centre`
-    )
-    const to = await this.$axios.$get(
-      `${process.env.GEO_API_URL}communes/${this.to_city_id}?fields=centre`
-    )
-    this.from = from.centre.coordinates
-    this.to = to.centre.coordinates
+  mounted() {
+    this.fetch()
   },
-
-},
-
+  updated() {
+    this.fetch()
+  },
+  methods: {
+    async fetch() {
+      try {
+        const from = await this.$axios.$get(
+          `${process.env.GEO_API_URL}communes/${this.from_city_id}?fields=centre`
+        )
+        const to = await this.$axios.$get(
+          `${process.env.GEO_API_URL}communes/${this.to_city_id}?fields=centre`
+        )
+        this.from = from.centre.coordinates
+        this.to = to.centre.coordinates
+      } catch (error) {
+        console.log(error)
+      }
+    },
+  },
 }
 </script>
 

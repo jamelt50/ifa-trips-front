@@ -4,7 +4,9 @@
     <input
       v-if="!isTextarea"
       :placeholder="placeholder"
-      :class="'rounded-2xl h-10 px-6 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80 ' + color"
+      :class="`rounded-2xl h-10 px-6 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80 ${color} ${
+        error ? 'error' : ''
+      }`"
       :type="type"
       :name="name"
       autocomplete="new-password"
@@ -14,7 +16,10 @@
     <textarea
       v-else
       :placeholder="placeholder"
-      :class="'rounded-2xl h-24 px-6 py-3 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80  ' + color"
+      :class="
+        'rounded-2xl h-24 px-6 py-3 w-full text-blue outline-none focus:opacity-100 transition-opacity opacity-80  ' +
+        color
+      "
       :type="type"
       :name="name"
       autocomplete="new-password"
@@ -22,7 +27,6 @@
       ref="input"
     >
     </textarea>
-
   </div>
 </template>
 
@@ -43,12 +47,21 @@ export default {
     default: { type: String },
     autocomplete: { type: String, default: 'off' },
     isTextarea: { type: Boolean },
+    error: { type: Boolean, default: false },
   },
+
 }
 </script>
 <style lang="scss" scoped>
 .outline {
   border: 1px solid var(--blue);
   background-color: var(--white);
+}
+.error {
+  border: 1px solid var(--red) !important;
+  color: var(--red) !important;
+  &::placeholder {
+    color: var(--red) !important;
+  }
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
   <form
+    ref="form"
     class="flex flex-col justify-center items-center w-full max-w-md"
     @submit.prevent="userLogin"
     method="POST"
@@ -10,6 +11,7 @@
       placeholder="Email"
       type="email"
       name="email"
+      :required="true"
     />
 
     <c-text-input
@@ -18,6 +20,7 @@
       placeholder="Password"
       type="password"
       name="password"
+      :required="true"
     />
     <c-button
       color="orange"

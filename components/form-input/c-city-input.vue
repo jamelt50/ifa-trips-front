@@ -119,11 +119,15 @@ export default {
       this.$emit('input', data)
     },
     async fetchCity() {
-      const result = await this.$axios.get(
-        process.env.GEO_API_URL + 'communes/' + this.default
-      )
+      try {
+        const data = await this.$axios.$get(
+          process.env.GEO_API_URL + 'communes/' + this.default
+        )
 
-      this.choose(result.data);
+        this.choose(data)
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
   mounted() {

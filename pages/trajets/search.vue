@@ -50,14 +50,17 @@ export default {
       people: query.people,
     }
     let trips
-    if (!Object.values(searched).some((x) => x === null || x === '' ||x === undefined)) {
+    if (
+      !Object.values(searched).some(
+        (x) => x === null || x === '' || x === undefined
+      )
+    ) {
       trips = await $axios.$get('/trips/search', {
         params: searched,
       })
     } else {
       trips = { search: [] }
     }
-console.log(trips);
     return { trips: trips.data, searched }
   },
 }

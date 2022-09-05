@@ -49,12 +49,6 @@ export default {
   },
   methods: {
     async send(message) {
-      await this.$axios.$post('/messages/create', {
-        message: message,
-        trip_id: this.trip.id,
-      })
-    },
-    async send(message) {
       this.$store.dispatch('sendMessage', { message, room: this.trip.id })
       this.$router.push({
         path: '/messages',

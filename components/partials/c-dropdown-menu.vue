@@ -131,8 +131,12 @@ export default {
   },
   methods: {
     async logout() {
-      await this.$auth.logout()
-      this.$router.push('/connexion')
+      try {
+        await this.$auth.logout()
+        this.$router.push('/connexion')
+      } catch (error) {
+        console.log(err)
+      }
     },
   },
 

@@ -48,20 +48,24 @@ export const mutations = {
 
 export const actions = {
   async init({ state, dispatch, commit }) {
-    let conversations = await this.$axios.$get('/messages/list')
-    commit('setConversations', conversations)
-    commit('sort')
-    commit('selectConversation', state.conversations[0])
-    const socket = io(process.env.BACK_URL)
-    socket.on('connect', async () => {
-      dispatch('joinRooms', socket)
-    })
-    socket.on('new-message', (message) => {
-      dispatch('newMessage', message)
-    })
-    socket.on('new-conversation', (conversation) => {
-      dispatch('newConversation', conversation)
-    })
+    try {
+      let conversations = await this.$axios.$get('/messages/list')
+      commit('setConversations', conversations)
+      commit('sort')
+      commit('selectConversation', state.conversations[0])
+      const socket = io(process.env.BACK_URL)
+      socket.on('connect', async () => {
+        dispatch('joinRooms', socket)
+      })
+      socket.on('new-message', (message) => {
+        dispatch('newMessage', message)
+      })
+      socket.on('new-conversation', (conversation) => {
+        dispatch('newConversation', conversation)
+      })
+    } catch (error) {
+      console.log(error)
+    }
   },
   async joinRooms({ commit, state }, socket) {
     if (state.conversations) {
@@ -69,10 +73,14 @@ export const actions = {
       state.conversations.forEach((conversation) => {
         rooms.push(conversation.id)
       })
-      await this.$axios.$post('/messages/join-room', {
-        rooms: rooms,
-        socket: socket.id,
-      })
+      try {
+        await this.$axios.$post('/messages/join-room', {
+          rooms: rooms,
+          socket: socket.id,
+        })
+      } catch (error) {
+        console.log(error)
+      }
     }
   },
   newMessage({ commit, state }, message) {
@@ -100,9 +108,13 @@ export const actions = {
     dispatch('setConversations', conversations)
   },
   async sendMessage({ commit }, { message, room }) {
-    await this.$axios.$post('/messages/send', {
-      message: message,
-      room: room,
-    })
+    try {
+      await this.$axios.$post('/messages/send', {
+        message: message,
+        room: room,
+      })
+    } catch (error) {
+      console.log(error)
+    }
   },
 }

@@ -86,16 +86,19 @@ export default {
   },
   methods: {
     async updateUser() {
-      let formData = new FormData();
-      for (const key in this.formData){
-      formData.append(key,this.formData[key])
+      let formData = new FormData()
+      for (const key in this.formData) {
+        formData.append(key, this.formData[key])
       }
+      try {
+        this.updating = true
+        this.$axios.setHeader('Content-Type', 'multipart/formdata')
+        const result = await this.$axios.$post('/profile/update', formData)
 
-      this.updating = true
-      this.$axios.setHeader('Content-Type', 'multipart/formdata')
-      const result = await this.$axios.$post('/profile/update',formData)
-
-      this.updating = false
+        this.updating = false
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }

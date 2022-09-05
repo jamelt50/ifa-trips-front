@@ -18,7 +18,7 @@
   >
     <div class="flex justify-between items-center">
       <div class="w-3/4">
-        <c-trip-from-to :from="from.nom" :to="to.nom" />
+        <c-trip-from-to :from="trip.from.nom" :to="trip.to.nom" />
       </div>
 
       <div>
@@ -35,22 +35,6 @@
 <script>
 export default {
   props: ['trip'],
-  data() {
-    return {
-      from: '',
-      to: '',
-    }
-  },
-  async mounted() {
-    const from = await this.$axios.get(
-      process.env.GEO_API_URL + 'communes/' + this.trip.from_city_id
-    )
-    const to = await this.$axios.get(
-      process.env.GEO_API_URL + 'communes/' + this.trip.to_city_id
-    )
-    this.from = from.data
-    this.to = to.data
-  },
 }
 </script>
 

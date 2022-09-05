@@ -48,11 +48,15 @@
           pb-20
         "
       >
-      <div class="flex justify-end items-center mb-8">
-        <c-button class="ml-auto z-10" @clicked="mapActive = !mapActive" color="blue">
-          {{ !mapActive ? 'Voir la carte' : 'Cacher' }}</c-button
-        >
-      </div>
+        <div class="flex justify-end items-center mb-8">
+          <c-button
+            class="ml-auto z-10"
+            @clicked="mapActive = !mapActive"
+            color="blue"
+          >
+            {{ !mapActive ? 'Voir la carte' : 'Cacher' }}</c-button
+          >
+        </div>
         <c-button
           v-if="activeReservation"
           class="md:hidden my-4"
@@ -65,23 +69,24 @@
           :from="activeReservation.trip.from.name"
           :to="activeReservation.trip.to.name"
         />
-    <transition name="pop-up">
-        <c-trip-map
-          v-if="mapActive"
-          class="
-            absolute
-            bg-white
-            md:bg-transparent
-            top-16
-            right-0
-            w-full md:w-3/4 md:px-6
-            h-4/5
-            z-10
-          "
-          :from_city_id="activeReservation.trip.from_city_id"
-          :to_city_id="activeReservation.trip.to_city_id"
-        />
-    </transition>
+        <transition name="pop-up">
+          <c-trip-map
+            v-if="mapActive"
+            class="
+              absolute
+              bg-white
+              md:bg-transparent
+              top-16
+              right-0
+              w-full
+              md:w-3/4 md:px-6
+              h-4/5
+              z-10
+            "
+            :from_city_id="activeReservation.trip.from_city_id"
+            :to_city_id="activeReservation.trip.to_city_id"
+          />
+        </transition>
         <div
           class="flex justify-between md:items-center flex-col md:flex-row my-8"
         >
@@ -144,15 +149,17 @@ export default {
   },
   methods: {
     async cancel() {
-      let reservation = await this.$axios.$put(
-        `/reservations/cancel/${this.activeReservation.id}`
-      )
-      this.activeReservation = reservation
-      this.reservations.splice(
-        this.reservations.indexOf(this.activeReservation),
-        1,
-        reservation
-      )
+      try {
+        let reservation = await this.$axios.$put(
+          `/reservations/cancel/${this.activeReservation.id}`
+        )
+        this.activeReservation = reservation
+        this.reservations.splice(
+          this.reservations.indexOf(this.activeReservation),
+          1,
+          reservation
+        )
+      } catch (error) {}
     },
   },
 }

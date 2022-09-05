@@ -63,10 +63,14 @@ export default {
   methods: {
     async reserveTrip() {
       if (this.$auth.loggedIn) {
-        const reservation = await this.$axios.$post(
-          `/trips/reserve/${this.trip.id}`
-        )
-        this.$router.push('/trajets/mes-trajets')
+        try {
+          const reservation = await this.$axios.$post(
+            `/trips/reserve/${this.trip.id}`
+          )
+          this.$router.push('/trajets/mes-trajets')
+        } catch (error) {
+          console.log(error)
+        }
       } else {
         this.$router.push('/connexion')
       }

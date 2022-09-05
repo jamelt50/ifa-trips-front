@@ -120,11 +120,15 @@ export default {
   },
   methods: {
     async saveTrip() {
-      const trip = await this.$axios.$post('/trips/create', this.formData)
-      this.$router.push({
-        path: '/trajets/mes-trajets',
-        query: { trajets: trip.id },
-      })
+      try {
+        const trip = await this.$axios.$post('/trips/create', this.formData)
+        this.$router.push({
+          path: '/trajets/mes-trajets',
+          query: { trajets: trip.id },
+        })
+      } catch (error) {
+        console.log(error)
+      }
     },
   },
 }

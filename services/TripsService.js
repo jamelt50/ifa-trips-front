@@ -1,6 +1,0 @@
-class TripService {
-  async list() {
-    
-
-}
-}

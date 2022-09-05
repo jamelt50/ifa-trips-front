@@ -103,7 +103,10 @@
         </div>
         <div class="h-5/6 md:h-auto">
           <span class="text-xl">Passager:</span>
-          <ul class="my-3 overflow-scroll md:overflow-hidden h-5/6 md:h-auto" v-if="activeTrip.reservations">
+          <ul
+            class="my-3 overflow-scroll md:overflow-hidden h-5/6 md:h-auto"
+            v-if="activeTrip.reservations"
+          >
             <li
               v-for="reservation in activeTrip.reservations"
               :key="reservation.id"
@@ -123,14 +126,14 @@
                 <span class="mx-3">Status:</span>
                 <c-button
                   v-if="reservation.state == 'pending'"
-                  @clicked="cancel(activeTrip)"
+                  @clicked="cancel"
                   color="red"
                   >Annuler</c-button
                 >
 
                 <c-button
                   v-if="reservation.state == 'pending'"
-                  @clicked="accept(activeTrip)"
+                  @clicked="accept"
                   color="green"
                   class="ml-2"
                   >Accepter</c-button
@@ -171,19 +174,41 @@ export default {
   methods: {
     async selectTrip(trip) {
       this.activeTrip = trip
-      let reservations = await this.$axios.$get(
-        `/trips/${trip.id}/reservations`
-      )
-      this.$set(this.activeTrip, 'reservations', reservations)
+      try {
+        let reservations = await this.$axios.$get(
+          `/trips/${trip.id}/reservations`
+        )
+        this.$set(this.activeTrip, 'reservations', reservations)
+      } catch (error) {
+        console.log(error)
+      }
     },
     toggleMap() {
       this.mapActive = !this.mapActive
     },
     async accept(trip) {
-      let updatedtTrip = await this.$axios.$post(`/trips/accept/${trip.id}`)
+      try {
+        let updatedtTrip = await this.$axios.$post(
+          `/trips/accept/${activeTrip.id}`
+        )
+        this.replacetrip(updatedtTrip)
+      } catch (error) {
+        console.log(error)
+      }
     },
     async cancel(trip) {
-      let updatedtTrip = await this.$axios.$post(`/trips/cancel/${trip.id}`)
+      try {
+        let updatedtTrip = await this.$axios.$post(
+          `/trips/cancel/${activeTrip.id}`
+        )
+        this.replacetrip(updatedtTrip)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    replacetrip(updatedtTrip) {
+      this.trips.splice(this.trips.indexOf(this.activeTrip), 1, updatedtTrip)
+      this.activeTrip = updatedtTrip
     },
   },
 }
