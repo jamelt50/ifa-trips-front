@@ -12,8 +12,8 @@
       </div>
     </div>
     <div>
-      <c-button color="orange" class="w-full md:w-auto">Se Connecter</c-button>
-      <c-button color="white" class="w-full md:w-auto">S’inscrire</c-button>
+      <c-button color="orange" class="w-full md:w-auto m-2">Se Connecter</c-button>
+      <c-button color="white" class="w-full md:w-auto  m-2">S’inscrire</c-button>
     </div>
   </div>
 </c-container>

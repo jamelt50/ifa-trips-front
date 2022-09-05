@@ -2,7 +2,7 @@
   <div
     v-if="from && to"
     id="map-wrap"
-    class="h-96 overflow-hidden rounded-2xl"
+    class=" overflow-hidden rounded-2xl"
   >
     <client-only>
       <l-map
@@ -35,13 +35,22 @@
 
 <script>
 export default {
-  props: { to_city_id: Number, from_city_id: Number },
+  props: { to_city_id: String, from_city_id: String },
   data() {
     return {
       from: null,
       to: null,
     }
   },
+mounted(){
+this.fetch()
+
+},
+updated(){
+this.fetch()
+
+},
+methods:{
   async fetch() {
     const from = await this.$axios.$get(
       `${process.env.GEO_API_URL}communes/${this.from_city_id}?fields=centre`
@@ -52,6 +61,9 @@ export default {
     this.from = from.centre.coordinates
     this.to = to.centre.coordinates
   },
+
+},
+
 }
 </script>
 

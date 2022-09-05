@@ -58,10 +58,10 @@
         >
           <ul class="flex flex-col md:flex-row items-center w-full">
             <li class="m-4 cursor-pointer hover:text-orange transition-all">
-              <nuxt-link class="text-xl" to="/">Acceuil</nuxt-link>
+              <nuxt-link class="text-3xl md:text-xl" to="/">Acceuil</nuxt-link>
             </li>
             <li class="m-4 cursor-pointer hover:text-orange transition-all">
-              <nuxt-link class="text-xl" to="/trajets/search"
+              <nuxt-link class="text-3xl md:text-xl" to="/trajets/search"
                 >Trajets</nuxt-link
               >
             </li>
@@ -69,7 +69,7 @@
               v-if="!$auth.loggedIn"
               class="m-4 cursor-pointer hover:text-orange transition-all"
             >
-              <nuxt-link class="text-xl" to="/inscription"
+              <nuxt-link class="text-3xl md:text-xl" to="/inscription"
                 >Inscription</nuxt-link
               >
             </li>
@@ -77,7 +77,7 @@
               v-if="!$auth.loggedIn"
               class="m-4 cursor-pointer hover:text-orange transition-all"
             >
-              <nuxt-link class="text-xl" to="/connexion">Connexion</nuxt-link>
+              <nuxt-link class="text-3xl md:text-xl" to="/connexion">Connexion</nuxt-link>
             </li>
           </ul>
         </nav>

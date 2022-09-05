@@ -12,12 +12,26 @@
       "
       :style="{
         'background-image': `url(${
-          previewImage ? previewImage: $auth.user.profile_pic
+          previewImage
+            ? previewImage
+            : $auth.user.profile_pic
+            ? $auth.user.profile_pic
+            : '/avatar-filled.svg'
         })`,
       }"
       @click="selectImage"
     ></div>
-    <img class="absolute bottom-0 right-0 pointer-events-none transform group-hover:-translate-1/2" src="/pen.svg" />
+    <img
+      class="
+        absolute
+        bottom-0
+        right-0
+        pointer-events-none
+        transform
+        group-hover:-translate-1/2
+      "
+      src="/pen.svg"
+    />
     <input class="hidden" ref="fileInput" type="file" @input="pickFile" />
   </div>
 </template>
@@ -39,7 +53,7 @@ export default {
       if (file && file[0]) {
         let reader = new FileReader()
         reader.onload = (e) => {
-          this.previewImage =  e.target.result
+          this.previewImage = e.target.result
         }
         reader.readAsDataURL(file[0])
         this.$emit('input', file[0])

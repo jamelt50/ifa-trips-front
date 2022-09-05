@@ -1,16 +1,13 @@
 <template>
-  <c-padding class="min-h-screen flex justify-center items-center">
-    <div class="w-full max-w-6xl bg-white text-blue p-6 rounded-2xl">
-      <div class="mb-3">
-        <c-button @clicked="$router.push('/')" color="orange">Retour</c-button>
-      </div>
+  <div class="min-h-screen flex justify-center items-center">
+    <div class="w-full h-screen max-h-5-6 md:h-auto max-w-6xl bg-white text-blue p-3 md:p-6 md:rounded-2xl">
       <client-only>
         <c-message-conversation-listing
           :conversations="conversations"
         />
       </client-only>
     </div>
-  </c-padding>
+  </div>
 </template>
 
 <script>
@@ -27,4 +24,7 @@ export default {
 </script>
 
 <style>
+.max-h-5-6 {
+max-height: 80vh;
+}
 </style>

@@ -57,7 +57,8 @@ export default {
     } else {
       trips = { search: [] }
     }
-    return { trips: trips.search, searched }
+console.log(trips);
+    return { trips: trips.data, searched }
   },
 }
 </script>

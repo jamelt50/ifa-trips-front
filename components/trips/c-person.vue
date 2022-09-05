@@ -3,7 +3,7 @@
     <img class="w-10 h-10 rounded-full"
       :src="person.profile_pic ? person.profile_pic : '/avatar-filled.svg'"
     />
-    <h3 class="mx-3 text-2xl font-bold">{{ person.name }}</h3>
+    <h3 class="mx-3 md:text-2xl font-bold">{{ person.name }}</h3>
   </div>
 </template>
 

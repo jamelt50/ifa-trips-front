@@ -16,7 +16,7 @@
       label="Password"
       v-model="formData.password"
       placeholder="Password"
-      type="text"
+      type="password"
       name="password"
     />
     <c-button

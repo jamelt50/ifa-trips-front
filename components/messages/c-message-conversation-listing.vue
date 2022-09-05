@@ -1,10 +1,22 @@
 <template>
-  <div class="flex justify-between items-center h-96 py-3">
-    <div class="w-1/4 border-r border-dark-blue pr-3 h-full overflow-scroll">
-      <ul v-if="conversations">
-        <li v-for="conversation in conversations" :key="conversation.id">
+  <div class="flex justify-between items-center h-full md:h-96 py-3 relative">
+    <div
+      class="
+        w-full
+        md:w-1/4
+        md:border-r border-dark-blue
+        pr-3
+        h-full
+        overflow-scroll
+      "
+    >
+      <ul v-if="$store.state.conversations">
+        <li
+          v-for="conversation in $store.state.conversations"
+          :key="conversation.id"
+        >
           <button
-            @click="selectConversation(conversation)"
+            @click="$store.commit('selectConversation', conversation)"
             class="
               hover:opacity-75
               transition-all
@@ -14,80 +26,69 @@
               border-b border-blue
             "
           >
-            <c-person
-              :person="
-                conversation.userTwo === $auth.user.id
-                  ? conversation.userOne
-                  : conversation.userTwo
-              "
-            />
+            <div class="flex justify-between items-center">
+              <c-person
+                :person="
+                  conversation.userTwo.id === $auth.user.id
+                    ? conversation.userOne
+                    : conversation.userTwo
+                "
+              />
+              <div
+                v-if="conversation.notify"
+                class="w-4 h-4 bg-orange rounded-full"
+              ></div>
+            </div>
+
+            <p class="text-left py-2">
+              {{
+                conversation.messages.length > 0
+                  ? conversation.messages[conversation.messages.length - 1]
+                      .content
+                  : ''
+              }}
+            </p>
           </button>
         </li>
       </ul>
       <div v-else><p>Vous n'avez pas encore de conversation</p></div>
     </div>
-    <div class="w-3/4 px-6 h-full">
-      <div v-if="activeConversation" class="flex justify-end items-center">
-        <c-person
-          class="mb-2"
-          :person="
-            activeConversation.userTwo === $auth.user.id
-              ? activeConversation.userOne
-              : activeConversation.userTwo
-          "
-        />
+    <transition name="switch">
+      <div
+        v-if="$store.state.activeConversation"
+        class="
+          absolute
+          bg-white
+          md:bg-transparent
+          top-0
+          left-0
+          w-full
+          md:static md:w-3/4
+          md:px-6
+          h-full
+          pb-20
+        "
+      >
+
+        <div class="flex justify-between items-center">
+        <c-button v-if="$store.state.activeConversation" class="md:hidden" @clicked="$store.commit('selectConversation',null)" color="orange">Retour</c-button>
+          <c-person
+            class="mb-2"
+            :person="
+              $store.state.activeConversation.userTwo.id === $auth.user.id
+                ? $store.state.activeConversation.userOne
+                : $store.state.activeConversation.userTwo
+            "
+          />
+        </div>
+        <c-message-conversation v-if="$store.state.activeConversation" />
       </div>
-      <c-message-conversation
-        :io="io"
-        v-if="activeConversation"
-        :conversation="activeConversation"
-      />
-    </div>
+    </transition>
   </div>
 </template>
 
 <script>
-import { io } from 'socket.io-client'
-export default {
-  props: { conversations: { type: Array } },
-  data() {
-    return {
-      io: null,
-      activeConversation: null,
-    }
-  },
-  methods: {
-    selectConversation(conv) {
-      this.activeConversation = conv
-    },
-  },
-  async mounted() {
-    this.io = io(process.env.BACK_URL)
-    this.io.on('connect', async (socket) => {
-      if (this.conversations) {
-        const rooms = []
-        this.conversations.forEach((conversation) => {
-          rooms.push(conversation.id)
-        })
-        await this.$axios.$post('/messages/join-room', {
-          rooms: rooms,
-          socket: this.io.id,
-        })
-      }
-    })
-    this.io.on('new-message', (message) => {
-      this.conversations.forEach((conversation) => {
-        if (conversation.id === message.conversation_id) {
-          conversation.messages.push(message)
-        }
-      })
-    })
-    this.io.on('new-conversation', (conversation) => {
-      console.log(conversation)
-      // this.conversations.push(conversation)
-    })
-  },
-}
+export default {}
 </script>
 
 <style>

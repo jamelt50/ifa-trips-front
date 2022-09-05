@@ -3,7 +3,7 @@
     :disabled="disabled"
     @click="$emit('clicked')"
     :class="
-      'font-bold text-xl hover:opacity-90 transition-all px-6 py-1 ' + color + (rounded ? ' rounded-2xl':'')"
+      'font-bold md:text-xl hover:opacity-90 transition-all px-6 py-1 ' + color + (rounded ? ' rounded-2xl':'')"
   >
     <slot></slot>
   </button>

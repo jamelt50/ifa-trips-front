@@ -1,9 +1,9 @@
 <template>
   <form
     @submit.prevent
-    class="w-full flex flex-col-reverse md:flex-row justify-between"
+    class="w-full flex flex-col md:flex-row justify-between"
   >
-    <div class="md:aw-1/2 p-4">
+    <div class="md:w-1/2 md:p-4">
       <div class="w-full flex flex-wrap md:my-2 justify-between items-center">
         <div class="w-full md:w-1/2 mb-2">
           <c-city-input
@@ -93,14 +93,7 @@
     </div>
     <div class="md:w-1/2 p-4">
       <h2 class="text-2xl mb-3">Régle d'utilisations</h2>
-      <p class="opacity-80 text-sm mb-2">
-        Le lorem ipsum est, en imprimerie, une suite de mots sans signification
-        utilisée à titre provisoire pour calibrer une mise en page, le texte
-        définitif venant remplacer le faux-texte dès qu'il est prêt ou que la
-        mise en page est achevée. Généralement, on utilise un texte en faux
-        latin, le Lorem ipsum ou Lipsum.
-      </p>
-      <p class="opacity-80 text-sm mb-2">
+      <p class="opacity-80 text-xs md:text-sm mb-2">
         Le lorem ipsum est, en imprimerie, une suite de mots sans signification
         utilisée à titre provisoire pour calibrer une mise en page, le texte
         définitif venant remplacer le faux-texte dès qu'il est prêt ou que la

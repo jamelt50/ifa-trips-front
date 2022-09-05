@@ -35,6 +35,9 @@ export default {
       this.$refs.datePicker.value = this.default
       this.$refs.datePicker.dispatchEvent(new Event('input'))
       this.handleInput(this.default)
+    }else{
+      this.$refs.datePicker.dispatchEvent(new Event('input'))
+       this.$emit('input', this.date)
     }
   },
 }

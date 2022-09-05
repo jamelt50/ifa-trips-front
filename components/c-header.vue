@@ -1,10 +1,10 @@
 <template>
 <c-container>
   <div class="flex flex-col justify-center items-center pt-14">
-    <h1 class="text-6xl text-center mb-16 font-bold">Voyager Meilleur!</h1>
-    <div class="w-full">
+    <h1 class="lg:text-6xl md:text-4xl text-3xl text-center lg:mb-16 md:mb-12  font-bold">Voyager Meilleur!</h1>
+    <div class="w-full ">
       <svg
-        class="w-full"
+        class="w-full h-80 md:h-96"
         width="800"
         height="488"
         viewBox="0 0 800 488"

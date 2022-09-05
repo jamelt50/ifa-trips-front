@@ -1,7 +1,7 @@
 <template>
   <span
     :class="
-      'font-bold block text-xl hover:opacity-90 transition-all px-6 py-1 rounded-2xl ' +
+      'font-bold block md:text-xl hover:opacity-90 transition-all px-6 py-1 rounded-2xl ' +
       color
     "
   >

@@ -42,7 +42,6 @@
 <script>
 export default {
   transition: 'page',
-  middleware: 'auth',
   async asyncData({ $axios, route }) {
     const id = route.params.id
     const trip = await $axios.$get('/trips/find/' + id)

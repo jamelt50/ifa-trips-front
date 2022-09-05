@@ -1,26 +1,25 @@
 <template>
   <div
-    class="border flex flex-col justify-between border-blue h-64 rounded-2xl"
+    class="border flex flex-col justify-between border-blue h-full md:h-80  rounded-2xl"
   >
     <div
       ref="container"
-      class="overflow-scroll w-full pt-12"
-      v-if="conversation"
+      class="overflow-scroll w-full pt-12 scroll"
+      v-if="$store.state.activeConversation"
     >
       <c-single-message
         :message="message"
-        v-for="message in conversation.messages"
+        v-for="message in $store.state.activeConversation.messages"
         :key="message.id"
       />
     </div>
-    <div v-else class="h-64"></div>
+    <div v-else class="h-full md:h-80"></div>
     <c-message-form @send="send" />
   </div>
 </template>
 
 <script>
 export default {
-  props: { io: { type: Object }, conversation: { type: Object }},
   data() {
     return {
       mounted: false,
@@ -31,7 +30,7 @@ export default {
     this.scrollDown()
   },
   watch: {
-    conversation: {
+    '$store.state.activeConversation.messages': {
       immediate: true,
       deep: true,
       handler() {
@@ -46,20 +45,23 @@ export default {
       if (this.$refs.container) {
         setTimeout(() => {
           this.$refs.container.scrollTop = this.$refs.container.scrollHeight
-        }, 200)
+        }, 400)
       }
     },
     async send(message) {
-      if (this.conversation) {
-        await this.$axios.$post('/messages/send', {
-          message: message,
-          room: this.conversation.id,
+      if (this.$store.state.activeConversation) {
+        this.$store.dispatch('sendMessage', {
+          message,
+          room: this.$store.state.activeConversation.id,
         })
-      } 
+      }
     },
   },
 }
 </script>
 
-<style>
+<style scoped>
+.scroll {
+  scroll-behavior: smooth;
+}
 </style>

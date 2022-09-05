@@ -35,12 +35,13 @@
           </div>
         </div>
       </div>
+
       <c-trip-map
-        class="w-1/2"
+        class="w-1/2 h-96"
         :from_city_id="trip.from_city_id"
         :to_city_id="trip.to_city_id"
       />
-      <transition name="pop-up">
+      <transition name="switch">
         <c-message-modal
           @close="modalOpen = false"
           :trip="trip"
@@ -65,6 +66,7 @@ export default {
         const reservation = await this.$axios.$post(
           `/trips/reserve/${this.trip.id}`
         )
+        this.$router.push('/trajets/mes-trajets')
       } else {
         this.$router.push('/connexion')
       }
