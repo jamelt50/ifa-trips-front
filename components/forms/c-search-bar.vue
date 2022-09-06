@@ -85,6 +85,7 @@
 </template>
 
 <script>
+import Validator from "../../services/Validator"
 export default {
   props: ['searched'],
   data() {
@@ -100,9 +101,7 @@ export default {
   methods: {
     search() {
       if (
-        !Object.values(this.formData).some(
-          (x) => x === null || x === '' || x === undefined
-        )
+        Validator.notEmpty(this.formData)
       ) {
         this.$router.push({
           path: '/trajets/search',

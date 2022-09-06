@@ -4,45 +4,49 @@
     @submit.prevent="register"
     method="POST"
   >
-
     <c-text-input
       label="Email"
       v-model="formData.email"
       placeholder="Email"
-        type="email"
-        name="email"
+      type="email"
+      name="email"
+      :required="true"
     />
 
     <c-text-input
       label="Nom"
       v-model="formData.name"
-        placeholder="Nom"
-        type="text"
-        name="name"
+      placeholder="Nom"
+      type="text"
+      name="name"
+      :required="true"
     />
 
     <c-text-input
       label="Prenom"
       v-model="formData.surname"
-        placeholder="Prenom"
-        type="text"
-        name="surname"
+      placeholder="Prenom"
+      type="text"
+      name="surname"
+      :required="true"
     />
 
     <c-text-input
       label="Mot de passe"
       v-model="formData.password"
-        placeholder="Mot de passe"
-        type="password"
-        name="password"
+      placeholder="Mot de passe"
+      type="password"
+      name="password"
+      :required="true"
     />
 
     <c-text-input
       label="Confirmer"
       v-model="formData.password_confirmation"
-        placeholder="Confirmer"
-        type="password"
-        name="password_confirmation"
+      placeholder="Confirmer"
+      type="password"
+      name="password_confirmation"
+      :required="true"
     />
     <c-button
       classes="px-6 py-1 my-3 rounded-2xl"

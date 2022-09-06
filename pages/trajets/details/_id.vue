@@ -9,7 +9,7 @@
       mx-auto
     "
   >
-    <div class="flex justify-between items-center w-full">
+    <div class="flex justify-between items-center w-full mt-8">
       <c-button
         class="flex justify-center items-center"
         @clicked="$router.back()"
@@ -18,7 +18,7 @@
       >
       <h1
         class="
-          text-3xl
+          text-xl
           sm:text-4xl
           md:text-6xl
           text-center
@@ -35,7 +35,7 @@
         }}
       </h1>
     </div>
-    <c-trip-details :trip="trip" />
+    <transition name="pop-up"> <c-trip-details v-if="trip" :trip="trip" /></transition>
   </c-padding>
 </template>
 
@@ -46,7 +46,7 @@ export default {
     const id = route.params.id
     const trip = await $axios.$get('/trips/find/' + id)
 
-    return { trip}
+    return { trip }
   },
 }
 </script>

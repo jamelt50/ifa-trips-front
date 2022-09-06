@@ -13,7 +13,7 @@
       <ul v-if="reservations.length">
         <li v-for="reservation in reservations" :key="reservation.id">
           <button
-            @click="activeReservation = reservation"
+            @click="selectReservation(reservation)"
             class="
               hover:opacity-75
               transition-all
@@ -145,9 +145,14 @@ export default {
     }
   },
   mounted() {
-    this.activeReservation = this.reservations ? this.reservations[0] : null
+    if (this.reservations.length) {
+      this.selectReservation(this.reservations[0])
+    }
   },
   methods: {
+    selectReservation(reservation) {
+      this.activeReservation = reservation
+    },
     async cancel() {
       try {
         let reservation = await this.$axios.$put(

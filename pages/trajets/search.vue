@@ -11,7 +11,7 @@
                 md:text-6xl
                 text-center
                 md:text-left
-                mb-12
+                mb-12 md:mb-0
                 font-bold
               "
             >
@@ -19,12 +19,13 @@
             </h1>
           </div>
           <div class="w-full flex justify-center items-center md:w-1/2">
-            <img class="w-full max-w-md" src="/offroad.svg" />
+            <img class="w-5/6 md:w-full max-w-md" src="/offroad.svg" />
           </div>
         </div>
         <div class="my-16">
           <c-search-bar :searched="searched" class="mx-auto" />
         </div>
+<transition-group name="switch">
 
         <c-trip-item
           class="mx-auto"
@@ -32,6 +33,8 @@
           :key="trip.id"
           :trip="trip"
         />
+</transition-group>
+
       </div>
     </div>
   </c-container>

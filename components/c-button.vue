@@ -1,21 +1,37 @@
 <template>
   <button
+    v-if="!to"
     :disabled="disabled"
     @click="$emit('clicked')"
     :class="
-      'font-bold md:text-xl hover:opacity-90 transition-all px-6 py-1 ' + color + (rounded ? ' rounded-2xl':'')"
+      'font-bold block md:text-xl hover:opacity-90 transition-all px-6 py-1 ' +
+      color +
+      (rounded ? ' rounded-2xl' : '')
+    "
   >
     <slot></slot>
   </button>
+  <nuxt-link
+    :class="
+      'font-bold block md:text-xl hover:opacity-90 transition-all px-6 py-1 ' +
+      color +
+      (rounded ? ' rounded-2xl' : '')
+    "
+    :to="to"
+    v-else
+  >
+    <slot></slot>
+  </nuxt-link>
 </template>
 
 <script>
 export default {
   props: {
     color: { type: String },
+    to: { type: String },
     classes: { type: String },
     disabled: { type: Boolean },
-    rounded:{type:Boolean,default:true}
+    rounded: { type: Boolean, default: true },
   },
 }
 </script>

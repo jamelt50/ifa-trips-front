@@ -8,10 +8,24 @@
 
 <script>
 export default {
-  mounted() {
-
-    this.$store.dispatch('init')
-
+  watch: {
+    '$auth.loggedIn': {
+      immediate: true,
+      deep: true,
+      handler() {
+        if (this.$auth.loggedIn) {
+          this.$store.dispatch('init')
+        }
+      },
+    },
+    $route() {
+      if (
+        this.$route.name != 'messages' &&
+        this.$store.state.activeConversation
+      ) {
+        this.$store.commit('selectConversation', null)
+      }
+    },
   },
 }
 </script>

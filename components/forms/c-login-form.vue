@@ -22,11 +22,7 @@
       name="password"
       :required="true"
     />
-    <c-button
-      color="orange"
-      class="w-full md:w-auto"
-      >Se Connecter</c-button
-    >
+    <c-button color="orange" class="w-full md:w-auto">Se Connecter</c-button>
   </form>
 </template>
 
@@ -39,12 +35,14 @@ export default {
   },
   methods: {
     async userLogin() {
-      try {
-        let response = await this.$auth.loginWith('local', {
-          data: this.formData,
-        })
-      } catch (err) {
-        console.log(err)
+      if (this.$refs.form.checkValidity()) {
+        try {
+          let response = await this.$auth.loginWith('local', {
+            data: this.formData,
+          })
+        } catch (err) {
+          console.log(err)
+        }
       }
     },
   },

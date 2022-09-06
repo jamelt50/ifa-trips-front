@@ -18,7 +18,7 @@
   >
     <div class="flex justify-between items-center">
       <div class="w-3/4">
-        <c-trip-from-to :from="trip.from.nom" :to="trip.to.nom" />
+        <c-trip-from-to :from="trip.from.name" :to="trip.to.name" />
       </div>
 
       <div>

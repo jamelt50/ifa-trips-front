@@ -13,9 +13,11 @@
       "
     >
       <input
+        @keyup.enter="send"
         class="flex-grow bg-transparent h-10 pl-6 outline-none"
         type="text"
         v-model="message"
+        required
         placeholder="Votre message..."
       />
       <c-button
@@ -39,6 +41,7 @@ export default {
   methods: {
     send() {
       this.$emit('send', this.message)
+      this.message = ''
     },
   },
 }

@@ -70,7 +70,7 @@
           top-0
           left-0
           w-full
-          md:static md:w-3/4 md:px-6
+          md:static md:w-3/4 md:px-6 md:overflow-y-scroll
           h-5/6
         "
       >
@@ -126,14 +126,14 @@
                 <span class="mx-3">Status:</span>
                 <c-button
                   v-if="reservation.state == 'pending'"
-                  @clicked="cancel"
+                  @clicked="cancel(reservation.id)"
                   color="red"
                   >Annuler</c-button
                 >
 
                 <c-button
                   v-if="reservation.state == 'pending'"
-                  @clicked="accept"
+                  @clicked="accept(reservation.id)"
                   color="green"
                   class="ml-2"
                   >Accepter</c-button
@@ -169,7 +169,9 @@ export default {
     }
   },
   mounted() {
-    this.activeTrip = this.trips.length ? this.trips[0] : null
+    if (this.trips.length) {
+      this.selectTrip(this.trips[0])
+    }
   },
   methods: {
     async selectTrip(trip) {
@@ -186,20 +188,20 @@ export default {
     toggleMap() {
       this.mapActive = !this.mapActive
     },
-    async accept(trip) {
+    async accept(id) {
       try {
         let updatedtTrip = await this.$axios.$post(
-          `/trips/accept/${activeTrip.id}`
+          `/trips/accept/${id}`
         )
         this.replacetrip(updatedtTrip)
       } catch (error) {
         console.log(error)
       }
     },
-    async cancel(trip) {
+    async cancel(id) {
       try {
         let updatedtTrip = await this.$axios.$post(
-          `/trips/cancel/${activeTrip.id}`
+          `/trips/cancel/${id}`
         )
         this.replacetrip(updatedtTrip)
       } catch (error) {
@@ -209,6 +211,7 @@ export default {
     replacetrip(updatedtTrip) {
       this.trips.splice(this.trips.indexOf(this.activeTrip), 1, updatedtTrip)
       this.activeTrip = updatedtTrip
+      this.selectTrip(this.activeTrip)
     },
   },
 }

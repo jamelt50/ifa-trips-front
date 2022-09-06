@@ -15,6 +15,7 @@
     <div
       class="bg-black opacity-90 w-full h-full fixed top-0 left-0 modal-z-index"
     ></div>
+<c-padding>
     <div
       class="
         bg-white
@@ -22,7 +23,7 @@
         modal-z-index
         flex flex-col
         justify-center
-        p-8
+        p-3 md:p-8
         relative
       "
     >
@@ -36,6 +37,7 @@
         >X</c-button
       >
     </div>
+</c-padding>
   </div>
 </template>
 

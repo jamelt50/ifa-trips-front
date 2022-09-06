@@ -70,6 +70,7 @@
             "
             v-model="formData.price"
             type="number"
+            placeholder="prix"
             name="price"
             id="price"
           />
@@ -79,7 +80,7 @@
         <div class="w-full">
           <c-text-input
             color="outline"
-            label="Description"
+            placeholder="Description"
             v-model="formData.description"
             :isTextarea="true"
           />

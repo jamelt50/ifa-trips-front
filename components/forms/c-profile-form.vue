@@ -28,6 +28,7 @@
       name="name"
       color="outline"
       :default="$auth.user.name"
+      :required="true"
     />
 
     <c-text-input
@@ -38,6 +39,7 @@
       name="surname"
       color="outline"
       :default="$auth.user.surname"
+      :required="true"
     />
     <c-text-input
       label="Nouveau mot de passe"

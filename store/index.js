@@ -3,29 +3,40 @@ import { io } from 'socket.io-client'
 export const state = () => ({
   conversations: [],
   activeConversation: null,
+  notification: false,
 })
 
 export const mutations = {
   selectConversation(state, conv) {
+    if (conv && conv.notify) {
+      conv.notify = false
+      state.notification = false
+    }
     state.activeConversation = conv
   },
   notify(state, conv) {
     const index = state.conversations.indexOf(conv)
     state.conversations[index].notify = true
+    state.notification = true
   },
   sort(state) {
     let sorted = state.conversations
 
     sorted = sorted.sort((a, b) => {
+      const indexA = a.messages.length
+      const indexB = b.messages.length
+
       if (a.messages.length && b.messages.length) {
-        if (a.messages[0].createdAt < b.messages[0].createdAt) {
+        const dateA = new Date(a.messages[indexA - 1].created_at).getTime()
+        const dateB = new Date(b.messages[indexB - 1].created_at).getTime()
+        if (dateA > dateB) {
           return -1
         }
-        if (a.messages[0].createdAt > b.messages[0].createdAt) {
+        if (dateA < dateB) {
           return 1
         }
         return 0
-      } else if (a.messages.length && !b.messages.length) {
+      } else if (indexA && !indexB) {
         return -1
       } else {
         return 1

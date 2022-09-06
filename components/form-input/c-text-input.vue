@@ -12,6 +12,7 @@
       autocomplete="new-password"
       @input="$emit('input', $refs.input.value)"
       ref="input"
+      :required="required"
     />
     <textarea
       v-else
@@ -25,6 +26,7 @@
       autocomplete="new-password"
       @input="$emit('input', $refs.input.value)"
       ref="input"
+      :required="required"
     >
     </textarea>
   </div>
@@ -48,8 +50,8 @@ export default {
     autocomplete: { type: String, default: 'off' },
     isTextarea: { type: Boolean },
     error: { type: Boolean, default: false },
+    required: { type: Boolean, default: false },
   },
-
 }
 </script>
 <style lang="scss" scoped>

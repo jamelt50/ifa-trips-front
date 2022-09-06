@@ -1,17 +1,35 @@
 <template>
   <div class="relative justify-center items-center flex dropdown-menu">
     <button
-      class="flex justify-between items-center"
+      class="flex justify-between items-center relative"
       @click="dropdownOpen = !dropdownOpen"
     >
+      <transition name="pop-up">
+        <div
+          v-if="$store.state.notification"
+          class="
+            w-5
+            h-5
+            bg-orange
+            rounded-full
+            absolute
+            bottom-0
+            left-0
+            flex
+            justify-center
+            items-center
+          "
+        >
+          <img class="w-43" src="/notification.svg" /></div
+      ></transition>
       <div
         v-if="$auth.user.profile_pic"
         class="bg-white rounded-full overflow-hidden"
       >
         <img class="w-10 h-10" :src="$auth.user.profile_pic" />
       </div>
-      <div v-else class="bg-white p-1 md:p-2 rounded-full">
-        <img class="w-10 h-10" src="/avatar.svg" />
+      <div v-else class="bg-white  rounded-full w-10 h-10 justify-center items-center flex">
+        <img  src="/avatar.svg" />
       </div>
 
       <img
@@ -67,9 +85,24 @@
                 dropdown-menu__item
               "
             >
-              <nuxt-link class="py-2 block" to="/messages"
-                >Mes messages</nuxt-link
-              >
+              <nuxt-link class="py-2                 justify-between
+                items-center
+                flex" to="/messages"
+                >Mes messages
+                <div
+                  v-if="$store.state.notification"
+                  class="
+                    w-5
+                    h-5
+                    bg-orange
+                    rounded-full
+                    flex
+                    justify-center
+                    items-center
+                  "
+                >
+                  <img class="w-3" src="/notification.svg" /></div
+              ></nuxt-link>
             </li>
             <li
               :class="{

@@ -30,14 +30,15 @@ export default {
       enableTime: this.full ? true : false,
       defaultDate: this.default ? this.default : 'today',
       minDate: 'today',
+      disableMobile: 'true',
     })
     if (this.default) {
       this.$refs.datePicker.value = this.default
       this.$refs.datePicker.dispatchEvent(new Event('input'))
       this.handleInput(this.default)
-    }else{
+    } else {
       this.$refs.datePicker.dispatchEvent(new Event('input'))
-       this.$emit('input', this.date)
+      this.$emit('input', this.date)
     }
   },
 }

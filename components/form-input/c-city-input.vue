@@ -65,6 +65,7 @@ export default {
       show: false,
       cities: [],
       loading: false,
+      fetchEnabled: true,
     }
   },
 
@@ -81,21 +82,23 @@ export default {
     },
     searchCities() {
       clearTimeout(this.timeOut)
-      this.timeOut = setTimeout(async () => {
-        try {
-          this.loading = true
-          const result = await this.$axios.get(
-            process.env.GEO_API_URL +
-              'communes?boost=population&nom=' +
-              this.search
-          )
-          this.cities = result.data.sort((a, b) => a > b)
-          this.cities = this.cities.slice(0, 5)
-          this.loading = false
-        } catch (error) {
-          console.log(error)
-        }
-      }, 300)
+      if (this.fetchEnabled) {
+        this.timeOut = setTimeout(async () => {
+          try {
+            this.loading = true
+            const result = await this.$axios.get(
+              process.env.GEO_API_URL +
+                'communes?boost=population&nom=' +
+                this.search
+            )
+            this.cities = result.data.sort((a, b) => a > b)
+            this.cities = this.cities.slice(0, 5)
+            this.loading = false
+          } catch (error) {
+            console.log(error)
+          }
+        }, 300)
+      }
     },
     showSuggestions() {
       this.show = true
@@ -110,8 +113,14 @@ export default {
       }
     },
     choose(city) {
-      this.$refs.input.value = city.nom
-      this.$refs.input.dispatchEvent(new Event('input'))
+      this.fetchEnabled = false
+      setTimeout(() => {
+        this.$refs.input.value = city.nom
+        this.$refs.input.dispatchEvent(new Event('input'))
+      }, 200)
+      setTimeout(() => {
+        this.fetchEnabled = true
+      }, 250)
       this.handleInput(city.code)
       this.hideSuggestions()
     },
