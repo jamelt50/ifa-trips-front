@@ -3,7 +3,9 @@ export default {
   css: ['~assets/scss/main.scss'],
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
-
+  server: {
+    port: 3500
+  },
   env: {
     BACK_URL: process.env.BACK_URL,
     GEO_API_URL: process.env.GEO_API_URL,
