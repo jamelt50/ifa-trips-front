@@ -6,6 +6,7 @@ export default {
   server: {
     port: 8000,host:"127.0.0.1"
   },
+
   env: {
     BACK_URL: process.env.BACK_URL,
     GEO_API_URL: process.env.GEO_API_URL,
@@ -62,7 +63,6 @@ export default {
       callback: '/connexion',
       home: '/trajets/search',
     },
-
     strategies: {
       local: {
         token: {

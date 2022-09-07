@@ -48,45 +48,23 @@
           pb-20
         "
       >
-        <div class="flex justify-end items-center mb-8">
+        <div class="flex justify-between items-center mb-8">
           <c-button
-            class="ml-auto z-10"
-            @clicked="mapActive = !mapActive"
-            color="blue"
+            v-if="activeReservation"
+            class="md:hidden my-4"
+            @clicked="activeReservation = null"
+            color="orange"
+            >Retour</c-button
           >
-            {{ !mapActive ? 'Voir la carte' : 'Cacher' }}</c-button
+          <c-button @clicked="mapActive = true" color="blue">
+            Voir la carte</c-button
           >
         </div>
-        <c-button
-          v-if="activeReservation"
-          class="md:hidden my-4"
-          @clicked="activeReservation = null"
-          color="orange"
-          >Retour</c-button
-        >
 
         <c-trip-from-to
           :from="activeReservation.trip.from.name"
           :to="activeReservation.trip.to.name"
         />
-        <transition name="pop-up">
-          <c-trip-map
-            v-if="mapActive"
-            class="
-              absolute
-              bg-white
-              md:bg-transparent
-              top-16
-              right-0
-              w-full
-              md:w-3/4 md:px-6
-              h-4/5
-              z-10
-            "
-            :from_city_id="activeReservation.trip.from_city_id"
-            :to_city_id="activeReservation.trip.to_city_id"
-          />
-        </transition>
         <div
           class="flex justify-between md:items-center flex-col md:flex-row my-8"
         >
@@ -131,6 +109,14 @@
           </div>
         </div>
       </div>
+    </transition>
+    <transition name="pop-up">
+      <c-trip-map-modal
+        @close="mapActive = false"
+        v-if="mapActive"
+        :from_city_id="activeReservation.trip.from_city_id"
+        :to_city_id="activeReservation.trip.to_city_id"
+      />
     </transition>
   </div>
 </template>

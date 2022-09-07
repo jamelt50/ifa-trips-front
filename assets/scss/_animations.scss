@@ -19,11 +19,11 @@
 
 .switch-enter-active,
 .switch-leave-active {
-  transition: all 0.4s;
+  transition: all 0.5s;
 }
 .switch-enter,
 .switch-leave-to {
-  transform: translatex(100%);
+  transform: translatex(10%);
   opacity: 0;
 }
 .mobile-nav-fade-enter-active,

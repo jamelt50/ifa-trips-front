@@ -27,6 +27,13 @@
       </l-map>
     </client-only>
   </div>
+  <c-loader
+    v-else
+    color="var(--orange)"
+    size="150px"
+    class="z-50"
+    :loading="true"
+  />
 </template>
 
 <script>
@@ -41,8 +48,14 @@ export default {
   mounted() {
     this.fetch()
   },
-  updated() {
-    this.fetch()
+
+  watch: {
+    to_city_id: () => {
+      this.fetch()
+    },
+    from_city_id: () => {
+      this.fetch()
+    },
   },
   methods: {
     async fetch() {
