@@ -1,5 +1,5 @@
 <template >
-<c-container classes="bg-blue">
+<c-container class="bg-blue">
   <div
     class="flex flex-col justify-center items-center  py-28 text-white text-center"
   >
@@ -11,7 +11,7 @@
         </p>
       </div>
     </div>
-    <div>
+    <div class="md:flex">
       <c-button to='/connexion' color="orange" class="w-full md:w-auto md:mx-2 my-2">Se Connecter</c-button>
       <c-button to='/inscription' color="white" class="w-full md:w-auto md:mx-2 my-2">S’inscrire</c-button>
     </div>

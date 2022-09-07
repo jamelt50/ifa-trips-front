@@ -10,6 +10,7 @@
         border border-blue
         rounded-2xl
         overflow-hidden
+        isolate
       "
     >
       <input

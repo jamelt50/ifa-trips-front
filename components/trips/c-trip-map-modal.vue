@@ -5,15 +5,14 @@
     <div
       class="bg-black opacity-90 w-full h-full fixed top-0 left-0 z-40"
     ></div>
-    <div class="relative">
+    <div class="relative z-50">
       <c-button
         color="orange"
         @clicked="$emit('close')"
-        class="absolute -top-12 right-2 z-50"
+        class="absolute -top-12 right-2 "
         >X</c-button
       >
       <c-trip-map
-        class="z-50 w-1/2 border-0"
         :style="{ height: height + 'px', width: width + 'px' }"
         :to_city_id="to_city_id"
         :from_city_id="from_city_id"
@@ -29,11 +28,16 @@ export default {
     return {
       width: 0,
       height: 0,
+      handler: null,
     }
   },
   mounted() {
     this.resize()
-    window.addEventListener('resize', this.resize.bind(this))
+    this.handler = this.resize.bind(this)
+    window.addEventListener('resize', this.handler)
+  },
+  destroy() {
+    window.removeEventListener('resize', this.handler)
   },
   methods: {
     resize() {

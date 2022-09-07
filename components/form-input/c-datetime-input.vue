@@ -28,9 +28,11 @@ export default {
     flatpickr(this.$refs.datePicker, {
       dateFormat: this.full ? 'Y-m-d H:i' : 'Y-m-d',
       enableTime: this.full ? true : false,
-      defaultDate: this.default ? this.default : 'today',
+      defaultDate: this.default ? this.default : Date.now(),
       minDate: 'today',
       disableMobile: 'true',
+      time_24hr: true,
+      minuteIncrement: 30
     })
     if (this.default) {
       this.$refs.datePicker.value = this.default

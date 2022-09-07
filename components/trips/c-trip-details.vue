@@ -1,6 +1,16 @@
 <template>
   <div
-    class="bg-white rounded-2xl p-3 md:p-8 my-6 text-blue max-w-screen-lg z-0 w-full"
+    class="
+      bg-white
+      rounded-2xl
+      p-3
+      md:p-8
+      my-6
+      text-blue
+      max-w-screen-lg
+      z-0
+      w-full
+    "
   >
     <div class="mb-12">
       <c-trip-from-to :from="trip.from.name" :to="trip.to.name" />
@@ -18,7 +28,10 @@
           </p>
         </div>
         <p>{{ trip.description }}</p>
-        <div v-if="trip.driver_id != $auth.user.id" class="flex justify-between items-center my-8">
+        <div
+          v-if="($auth.user && trip.driver_id != $auth.user.id) || !$auth.user"
+          class="flex justify-between items-center my-8"
+        >
           <div class="flex items-center">
             <c-button
               @clicked="reserveTrip"
@@ -27,6 +40,7 @@
               >Resever</c-button
             >
             <c-button
+              v-if="$auth.user"
               @clicked="modalOpen = true"
               class="py-2 px-3 rounded-2xl"
               color="blue"

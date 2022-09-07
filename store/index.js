@@ -3,7 +3,7 @@ import { io } from 'socket.io-client'
 export const state = () => ({
   conversations: [],
   activeConversation: null,
-  notification: false,
+  notification: null,
 })
 
 export const mutations = {
@@ -17,7 +17,7 @@ export const mutations = {
   notify(state, conv) {
     const index = state.conversations.indexOf(conv)
     state.conversations[index].notify = true
-    state.notification = true
+    state.notification = {type:type}
   },
   sort(state) {
     let sorted = state.conversations
@@ -118,12 +118,19 @@ export const actions = {
     let conversations = await $axios.$get('/messages/list')
     dispatch('setConversations', conversations)
   },
-  async sendMessage({ commit }, { message, room }) {
+  async sendMessage({ commit, state }, { message, room }) {
     try {
-      await this.$axios.$post('/messages/send', {
-        message: message,
-        room: room,
-      })
+      if (state.conversations.some((conv) => conv.trip_id === room)) {
+        await this.$axios.$post('/messages/send', {
+          message: message,
+          room: room,
+        })
+      } else {
+        await this.$axios.$post('/messages/create', {
+          message: message,
+          trip_id: room,
+        })
+      }
     } catch (error) {
       console.log(error)
     }

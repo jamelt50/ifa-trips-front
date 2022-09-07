@@ -1,40 +1,43 @@
 <template>
   <c-container>
-    <div class="mt-48 flex justify-center">
+    <div class="mt-28 md:mt-48 flex justify-center">
       <div class="w-full max-w-6xl">
-        <div class="md:flex justify-between items-center mb-22">
+        <div class="md:flex justify-between items-center">
           <div class="w-full md:w-1/2">
-            <h1
-              class="
-                text-3xl
-                sm:text-4xl
-                md:text-6xl
-                text-center
-                md:text-left
-                mb-12 md:mb-0
-                font-bold
-              "
-            >
-              Chercher un trajet
-            </h1>
+            <transition name="mobile-nav-fade">
+              <h1
+                class="
+                  text-3xl
+                  sm:text-4xl
+                  md:text-6xl
+                  text-center
+                  md:text-left
+                  mb-8
+                  md:mb-0
+                  font-bold
+                "
+              >
+                Chercher un trajet
+              </h1>
+            </transition>
           </div>
           <div class="w-full flex justify-center items-center md:w-1/2">
             <img class="w-5/6 md:w-full max-w-md" src="/offroad.svg" />
           </div>
         </div>
         <div class="my-16">
-          <c-search-bar :searched="searched" class="mx-auto" />
+          <transition name="pop-in">
+            <c-search-bar :searched="searched" class="mx-auto"
+          /></transition>
         </div>
-<transition-group name="switch">
-
-        <c-trip-item
-          class="mx-auto"
-          v-for="trip in trips"
-          :key="trip.id"
-          :trip="trip"
-        />
-</transition-group>
-
+        <transition-group name="switch">
+          <c-trip-item
+            class="mx-auto"
+            v-for="trip in trips"
+            :key="trip.id"
+            :trip="trip"
+          />
+        </transition-group>
       </div>
     </div>
   </c-container>

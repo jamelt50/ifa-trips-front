@@ -91,7 +91,7 @@ export default {
                 'communes?boost=population&nom=' +
                 this.search
             )
-            this.cities = result.data.sort((a, b) => a > b)
+            this.cities = result.data.sort((a, b) => a._score > b._score)
             this.cities = this.cities.slice(0, 5)
             this.loading = false
           } catch (error) {
@@ -104,11 +104,13 @@ export default {
       this.show = true
       this.clickListener = this.clickOustide.bind(this)
       window.addEventListener('click', this.clickListener)
+      window.addEventListener('touchstart', this.clickListener)
     },
     hideSuggestions() {
       this.show = false
       if (this.clickListener) {
         window.removeEventListener('click', this.clickListener)
+        window.addEventListener('touchstart', this.clickListener)
         this.clickListener = null
       }
     },

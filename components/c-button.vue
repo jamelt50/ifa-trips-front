@@ -4,7 +4,7 @@
     :disabled="disabled"
     @click="$emit('clicked')"
     :class="
-      'font-bold block md:text-xl hover:opacity-90 transition-all px-6 py-1 ' +
+      ' block md:text-xl hover:opacity-90 transition-all isolate px-6 py-1 ' +
       color +
       (rounded ? ' rounded-2xl' : '')
     "
@@ -13,7 +13,7 @@
   </button>
   <nuxt-link
     :class="
-      'font-bold block md:text-xl hover:opacity-90 transition-all px-6 py-1 ' +
+      ' block md:text-xl hover:opacity-90 transition-all isolate px-6 py-1 ' +
       color +
       (rounded ? ' rounded-2xl' : '')
     "
@@ -29,7 +29,6 @@ export default {
   props: {
     color: { type: String },
     to: { type: String },
-    classes: { type: String },
     disabled: { type: Boolean },
     rounded: { type: Boolean, default: true },
   },

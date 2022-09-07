@@ -1,6 +1,7 @@
 <template>
-  <div class="flex justify-between items-center h-5/6 md:h-96 py-3 relative">
+  <div class="flex justify-between items-center h-screen md:h-96 md:py-3 relative">
     <div
+      v-if="trips.length"
       class="
         w-full
         md:w-1/4 md:border-r
@@ -10,7 +11,7 @@
         overflow-scroll
       "
     >
-      <ul v-if="trips.length">
+      <ul>
         <li v-for="trip in trips" :key="trip.id">
           <button
             @click="selectTrip(trip)"
@@ -36,30 +37,10 @@
           </button>
         </li>
       </ul>
-      <div v-else><p>Vous n'avez pas encore crée de trajets</p></div>
     </div>
-    <transition name="pop-up">
-      <div v-if="mapActive">
-        <div
-          class="fixed top-0 left-0 h-screen w-full bg-black opacity-80 z-20"
-        ></div>
-        <c-trip-map
-          class="
-            absolute
-            bg-white
-            md:bg-transparent
-            top-16
-            right-0
-            w-full
-            md:w-3/4 md:px-6
-            h-5/6
-            z-30
-          "
-          :from_city_id="activeTrip.from_city_id"
-          :to_city_id="activeTrip.to_city_id"
-        />
-      </div>
-    </transition>
+    <div class="w-full justify-center items-center flex" v-else>
+      <p class="text-xl md:text-2xl">Vous n'avez pas encore de trajet</p>
+    </div>
     <transition name="switch">
       <div
         v-if="activeTrip"
@@ -70,7 +51,7 @@
           top-0
           left-0
           w-full
-          md:static md:w-3/4 md:px-6 md:overflow-y-scroll
+          md:static md:w-3/4 md:px-6 overflow-y-scroll
           h-5/6
         "
       >
@@ -82,12 +63,8 @@
             color="orange"
             >Retour</c-button
           >
-          <c-button
-            class="absolute top-0 right-0 z-30"
-            @clicked="toggleMap"
-            color="blue"
-          >
-            {{ !mapActive ? 'Voir la carte' : 'Cacher' }}</c-button
+          <c-button @clicked="mapActive = true" color="blue">
+            Voir la carte</c-button
           >
         </div>
 
@@ -96,7 +73,7 @@
           <div>
             <span class="text-xl"
               >Prix par passager:
-              <span class="font-bold">{{ activeTrip.price }}</span></span
+              <span class="font-bold">{{ activeTrip.price }}€</span></span
             >
           </div>
           <c-seats-indicator :seats="activeTrip.seats" />
@@ -156,6 +133,14 @@
         </div>
       </div>
     </transition>
+    <transition name="pop-up">
+      <c-trip-map-modal
+        @close="mapActive = false"
+        v-if="mapActive"
+        :from_city_id="activeTrip.from_city_id"
+        :to_city_id="activeTrip.to_city_id"
+      />
+    </transition>
   </div>
 </template>
 
@@ -190,9 +175,7 @@ export default {
     },
     async accept(id) {
       try {
-        let updatedtTrip = await this.$axios.$post(
-          `/trips/accept/${id}`
-        )
+        let updatedtTrip = await this.$axios.$post(`/trips/accept/${id}`)
         this.replacetrip(updatedtTrip)
       } catch (error) {
         console.log(error)
@@ -200,9 +183,7 @@ export default {
     },
     async cancel(id) {
       try {
-        let updatedtTrip = await this.$axios.$post(
-          `/trips/cancel/${id}`
-        )
+        let updatedtTrip = await this.$axios.$post(`/trips/cancel/${id}`)
         this.replacetrip(updatedtTrip)
       } catch (error) {
         console.log(error)

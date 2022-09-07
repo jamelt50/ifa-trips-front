@@ -1,10 +1,9 @@
 <template>
-  <div class="min-h-screen flex justify-center items-center">
+  <div class="min-h-screen md:flex justify-center items-center md:p-6">
     <div
       class="
         w-full
         h-screen
-        max-h-5-6
         md:h-auto
         max-w-6xl
         bg-white
@@ -15,7 +14,6 @@
       "
     >
       <c-reservation-listing
-        v-if="reservations.length"
         :reservations="reservations"
       />
     </div>
@@ -38,7 +36,5 @@ export default {
 </script>
 
 <style>
-.max-h-5-6 {
-  max-height: 80vh;
-}
+
 </style>

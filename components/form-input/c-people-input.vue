@@ -84,6 +84,11 @@ export default {
         this.peopleInputOpen = false
       }
     })
+    window.addEventListener('touchstart', (e) => {
+      if (!e.target.closest('.people-input') && this.peopleInputOpen) {
+        this.peopleInputOpen = false
+      }
+    })
   },
 }
 </script>

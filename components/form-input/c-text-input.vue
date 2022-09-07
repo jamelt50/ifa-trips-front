@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full mb-2">
-    <label class="block mb-2" for="email">{{ label }}</label>
+  <div class="w-full mb-1 md:mb-2">
+    <label class="block  mb-1 md:mb-2 text-sm md:text-md" for="email">{{ label }}</label>
     <input
       v-if="!isTextarea"
       :placeholder="placeholder"

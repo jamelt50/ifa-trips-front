@@ -35,15 +35,13 @@
     <c-logo></c-logo>
 
     <div class="flex justify-between z-10">
-      <transition mode="in-out" name="mobile-nav-fade">
+      <transition  name="pop-up">
         <nav
           v-if="mobileNavOpen"
           class="
             flex
             bg-blue
             md:bg-transparent
-            border-r border-orange
-            md:border-0
             top-0
             left-0
             md:left-auto md:top-auto
@@ -58,7 +56,7 @@
         >
           <ul class="flex flex-col md:flex-row items-center w-full">
             <li class="m-4 cursor-pointer hover:text-orange transition-all">
-              <nuxt-link class="text-3xl md:text-xl" to="/">Acceuil</nuxt-link>
+              <nuxt-link class="text-3xl md:text-xl" to="/">Accueil</nuxt-link>
             </li>
             <li class="m-4 cursor-pointer hover:text-orange transition-all">
               <nuxt-link class="text-3xl md:text-xl" to="/trajets/search"

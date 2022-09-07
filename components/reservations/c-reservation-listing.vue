@@ -1,6 +1,6 @@
 <template>
-  <div class="flex justify-between items-center h-full md:h-96 py-3 relative">
-    <div
+  <div class="flex justify-between md:items-center h-screen md:h-96 py-3 relative">
+    <div v-if="reservations.length"
       class="
         w-full
         md:w-1/4 md:border-r
@@ -10,7 +10,7 @@
         overflow-scroll
       "
     >
-      <ul v-if="reservations.length">
+      <ul >
         <li v-for="reservation in reservations" :key="reservation.id">
           <button
             @click="selectReservation(reservation)"
@@ -31,8 +31,8 @@
           </button>
         </li>
       </ul>
-      <div v-else><p>Vous n'avez pas encore de réervation</p></div>
     </div>
+      <div class="w-full justify-center items-center flex" v-else><p class="text-xl md:text-2xl">Vous n'avez pas encore de réservation</p></div>
     <transition name="switch">
       <div
         v-if="activeReservation"
@@ -73,7 +73,7 @@
               >Prix par passager:
               <span class="font-bold">{{
                 activeReservation.trip.price
-              }}</span></span
+              }}€</span></span
             >
           </div>
           <c-seats-indicator
@@ -118,6 +118,7 @@
         :to_city_id="activeReservation.trip.to_city_id"
       />
     </transition>
+
   </div>
 </template>
 

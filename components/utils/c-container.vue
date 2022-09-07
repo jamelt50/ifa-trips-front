@@ -1,5 +1,5 @@
 <template>
-  <div :class="classes" class="w-full">
+  <div  class="w-full">
     <c-padding>
       <slot />
     </c-padding>
@@ -8,7 +8,6 @@
 
 <script>
 export default {
-  props: ['classes'],
 }
 </script>
 

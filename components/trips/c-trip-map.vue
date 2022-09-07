@@ -1,5 +1,5 @@
 <template>
-  <div v-if="from && to" id="map-wrap" class="overflow-hidden rounded-2xl">
+  <div v-if="from && to" id="map-wrap" class="overflow-hidden isolate rounded-2xl">
     <client-only>
       <l-map
         :zoom="13"
@@ -30,7 +30,7 @@
   <c-loader
     v-else
     color="var(--orange)"
-    size="150px"
+    size="100px"
     class="z-50"
     :loading="true"
   />

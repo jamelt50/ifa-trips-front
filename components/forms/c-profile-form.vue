@@ -64,9 +64,8 @@
       <span>Un des champs de ce formulaire est vide ou incorrect</span>
     </div>
     <c-button
-      classes="px-6 py-1 my-3 rounded-2xl"
       color="blue"
-      class="w-full md:w-auto"
+      class="w-full md:w-auto px-6 py-1 my-3 rounded-2xl"
       :disabled="updating"
     >
       <span v-if="!updating">Enrengistrer</span>

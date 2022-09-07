@@ -1,7 +1,15 @@
 <template>
   <form
     @submit.prevent
-    class="w-full flex flex-col md:flex-row justify-between"
+    class="
+      w-full
+      flex flex-col
+      md:flex-row
+      h-screen
+      md:h-auto
+      justify-center
+      md:justify-between
+    "
   >
     <div class="md:w-1/2 md:p-4">
       <div class="w-full flex flex-wrap md:my-2 justify-between items-center">
@@ -57,23 +65,29 @@
           />
         </div>
         <div class="w-full md:w-1/5 mb-2">
-          <input
+          <div
             class="
               bg-transparent
               border border-blue
               rounded-xl
-              outline-none
-              pl-6
               w-full
               h-10
-              py-2
+              flex
+              justify-between
+              items-center
             "
-            v-model="formData.price"
-            type="number"
-            placeholder="prix"
-            name="price"
-            id="price"
-          />
+          >
+            <input
+              class="h-full pl-6 py-2 w-full bg-transparent outline-none"
+              v-model="formData.price"
+              type="number"
+              placeholder="prix"
+              name="price"
+              id="price"
+            />
+<div class="px-2">            <span>€</span></div>
+
+          </div>
         </div>
       </div>
       <div class="flex justify-between items-stretch">

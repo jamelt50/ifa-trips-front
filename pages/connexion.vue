@@ -1,8 +1,8 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <h1 class="text-6xl text-center mb-16 font-bold">Se Connecter</h1>
+  <c-padding class="flex flex-col justify-center items-center">
+    <h1 class="lg:text-6xl md:text-4xl text-3xl text-center lg:mb-16 md:mb-12  font-bold">Se Connecter</h1>
     <c-login-form />
-  </div>
+  </c-padding>
 </template>
 
 <script>
