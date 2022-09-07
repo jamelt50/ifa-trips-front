@@ -22,7 +22,12 @@
       name="password"
       :required="true"
     />
-    <c-button color="orange" class="w-full md:w-auto">Se Connecter</c-button>
+    <div v-if="error" class="my-4 text-red-700">
+      <span>Un des champs de ce formulaire est vide ou incorrect</span>
+    </div>
+    <c-button color="orange" class="w-full md:w-auto my-2"
+      >Se Connecter</c-button
+    >
   </form>
 </template>
 
@@ -31,6 +36,7 @@ export default {
   data() {
     return {
       formData: { email: '', password: '' },
+      error: false,
     }
   },
   methods: {
@@ -40,7 +46,9 @@ export default {
           let response = await this.$auth.loginWith('local', {
             data: this.formData,
           })
+          this.error = false
         } catch (err) {
+          this.error = true
           console.log(err)
         }
       }

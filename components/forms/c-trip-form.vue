@@ -86,6 +86,9 @@
           />
         </div>
       </div>
+      <div v-if="error" class="my-4 text-red-700">
+        <span>Un des champs de ce formulaire est vide ou incorrect</span>
+      </div>
       <div class="flex justify-center items-center py-4">
         <c-button @clicked="saveTrip" color="orange" classes=""
           >Crée un nouveau trajet</c-button
@@ -117,6 +120,7 @@ export default {
         price: 0,
         seats: 1,
       },
+      error: false,
     }
   },
   methods: {
@@ -127,7 +131,9 @@ export default {
           path: '/trajets/mes-trajets',
           query: { trajets: trip.id },
         })
+        this.error = false
       } catch (error) {
+        this.error = true
         console.log(error)
       }
     },

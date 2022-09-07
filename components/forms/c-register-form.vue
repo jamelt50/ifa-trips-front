@@ -48,6 +48,9 @@
       name="password_confirmation"
       :required="true"
     />
+    <div v-if="error" class="my-4 text-red-700">
+      <span>Un des champs de ce formulaire est vide ou incorrect</span>
+    </div>
     <c-button
       classes="px-6 py-1 my-3 rounded-2xl"
       color="orange"
@@ -68,6 +71,7 @@ export default {
         password: '',
         password_confirmation: '',
       },
+      error: false,
     }
   },
   methods: {
@@ -77,7 +81,9 @@ export default {
         let response = await this.$auth.loginWith('local', {
           data: this.formData,
         })
+          this.error = false
       } catch (err) {
+        this.error = true
         console.log(err)
       }
     },

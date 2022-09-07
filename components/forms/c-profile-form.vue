@@ -60,6 +60,9 @@
       autocomplete="new-password"
       color="outline"
     />
+    <div v-if="error" class="my-4 text-red-700">
+      <span>Un des champs de ce formulaire est vide ou incorrect</span>
+    </div>
     <c-button
       classes="px-6 py-1 my-3 rounded-2xl"
       color="blue"
@@ -84,6 +87,7 @@ export default {
         password_confirmation: '',
       },
       updating: false,
+      error: false,
     }
   },
   methods: {
@@ -98,7 +102,9 @@ export default {
         const result = await this.$axios.$post('/profile/update', formData)
 
         this.updating = false
+        this.error = false
       } catch (error) {
+        this.error = true
         console.log(error)
       }
     },
