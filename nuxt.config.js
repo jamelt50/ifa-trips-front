@@ -4,7 +4,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
   server: {
-    port: 3500
+    port: 8000,host:"127.0.0.1"
   },
   env: {
     BACK_URL: process.env.BACK_URL,
