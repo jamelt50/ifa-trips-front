@@ -4,7 +4,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [],
   server: {
-    port: 8000,host:"127.0.0.1"
+    port: 8000,
+    host: '127.0.0.1',
   },
 
   env: {
@@ -46,10 +47,12 @@ export default {
   },
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next','nuxt-leaflet',],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', 'nuxt-leaflet'],
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     baseURL: process.env.BACK_URL,
+    proxy: false,
+    credentials: false,
   },
   auth: {
     // cookie: {
