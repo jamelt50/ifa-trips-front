@@ -82,7 +82,7 @@
           <span class="text-xl">Passager:</span>
           <ul
             class="my-3 overflow-scroll md:overflow-hidden h-5/6 md:h-auto"
-            v-if="activeTrip.reservations"
+            v-if="activeTrip.reservations && activeTrip.reservations.length"
           >
             <li
               v-for="reservation in activeTrip.reservations"

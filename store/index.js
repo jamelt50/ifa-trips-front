@@ -17,7 +17,7 @@ export const mutations = {
   notify(state, conv) {
     const index = state.conversations.indexOf(conv)
     state.conversations[index].notify = true
-    state.notification = {type:type}
+    state.notification = true
   },
   sort(state) {
     let sorted = state.conversations
@@ -60,8 +60,7 @@ export const mutations = {
 export const actions = {
   async init({ state, dispatch, commit }) {
     try {
-      let conversations = await this.$axios.$get('/messages/list')
-      commit('setConversations', conversations)
+      dispatch('getConversations')
       commit('sort')
       commit('selectConversation', state.conversations[0])
       const socket = io(process.env.BACK_URL)
@@ -72,6 +71,7 @@ export const actions = {
         dispatch('newMessage', message)
       })
       socket.on('new-conversation', (conversation) => {
+        console.log(conversation)
         dispatch('newConversation', conversation)
       })
     } catch (error) {
@@ -80,9 +80,9 @@ export const actions = {
   },
   async joinRooms({ commit, state }, socket) {
     if (state.conversations) {
-      const rooms = []
+      const rooms = [state.auth.user.id + state.auth.user.email]
       state.conversations.forEach((conversation) => {
-        rooms.push(conversation.id)
+        rooms.push(conversation.id.toString())
       })
       try {
         await this.$axios.$post('/messages/join-room', {
@@ -112,11 +112,16 @@ export const actions = {
   newConversation({ commit }, conversation) {
     commit('pushConversation', conversation)
     commit('sort')
-    commit('notify', conversation)
+    if (
+      conversation.messages[0].from_id != state.auth.user.id &&
+      conversation != state.activeConversation
+    ) {
+      commit('notify', conversation)
+    }
   },
   async getConversations({ commit }) {
-    let conversations = await $axios.$get('/messages/list')
-    dispatch('setConversations', conversations)
+    let conversations = await this.$axios.$get('/messages/list')
+    commit('setConversations', conversations)
   },
   async sendMessage({ commit, state }, { message, room }) {
     try {
