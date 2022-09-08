@@ -16,6 +16,17 @@
 export default {
   transition: 'page',
   middleware: 'auth',
+  head: {
+    title: 'Mes trajets | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Liste de votre dernier trajets',
+      },
+    ],
+  },
   async asyncData({ $axios }) {
     const trips = await $axios.$get('/trips/my-trips')
     return { trips }

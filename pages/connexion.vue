@@ -9,7 +9,18 @@
 export default {
   transition: 'page',
   middleware: 'auth',
-  auth: 'guest'
+  auth: 'guest',
+  head: {
+    title: 'Connexion | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Connectez vous maintenant pour effectuer votre premier trajet',
+      },
+    ],
+  },
 }
 </script>
 

@@ -8,7 +8,18 @@
 
 <script>
 export default {
-transition: 'page'
+  transition: 'page',
+  head: {
+    title: 'Un voyage meilleur | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Ifa trips est un service de mise en relation entre particulier vous permettant de faire des trajets ecoresponsable',
+      },
+    ],
+  },
 }
 </script>
 

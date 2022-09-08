@@ -35,13 +35,28 @@
         }}
       </h1>
     </div>
-    <transition name="pop-up"> <c-trip-details v-if="trip" :trip="trip" /></transition>
+    <transition name="pop-up">
+      <c-trip-details v-if="trip" :trip="trip"
+    /></transition>
   </c-padding>
 </template>
 
 <script>
 export default {
   transition: 'page',
+  head() {
+    return {
+      title:  `${this.trip.from.name} a ${this.trip.to.name} | Ifa trips`,
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content:
+            `voyager de ${this.trip.from.name} a ${this.trip.to.name} avec Ifa trips`,
+        },
+      ],
+    }
+  },
   async asyncData({ $axios, route }) {
     const id = route.params.id
     const trip = await $axios.$get('/trips/find/' + id)

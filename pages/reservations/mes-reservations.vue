@@ -24,6 +24,17 @@
 export default {
   transition: 'page',
   middleware: 'auth',
+  head: {
+    title: 'Mes réservations | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Liste de votre dernieres réservations',
+      },
+    ],
+  },
   async asyncData({ $axios }) {
     try {
       const reservations = await $axios.$get('/reservations/my-reservations')

@@ -47,6 +47,17 @@
 export default {
   transition: 'page',
   watchQuery: true,
+  head: {
+    title: 'Rechercher un trajet | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'rechercher et reserver un trajets simplement avec Ifa trips',
+      },
+    ],
+  },
 
   async asyncData({ query, $axios }) {
     const searched = {

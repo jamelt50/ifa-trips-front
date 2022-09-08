@@ -24,6 +24,17 @@
 export default {
   transition: 'page',
   middleware: 'auth',
+  head: {
+    title: 'Mes messages | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Liste de votre derniers messages',
+      },
+    ],
+  },
   async asyncData({ $axios }) {
     try {
       let conversations = await $axios.$get('/messages/list')

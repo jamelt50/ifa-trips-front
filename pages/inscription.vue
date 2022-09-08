@@ -9,7 +9,18 @@
 export default {
   transition: 'page',
   middleware: 'auth',
-  auth: 'guest'
+  auth: 'guest',
+  head: {
+    title: 'Inscription | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Inscrivez vous maintenant pour effectuer votre premier trajet',
+      },
+    ],
+  },
 
 }
 </script>

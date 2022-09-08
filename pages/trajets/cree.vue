@@ -13,6 +13,17 @@
 export default {
   transition: 'page',
   middleware: 'auth',
+  head: {
+    title: 'Crée votre trajets | Ifa trips',
+    meta: [
+      {
+        hid: 'description',
+        name: 'description',
+        content:
+          'Crée votre trajets et partez sans inquietude, vos trajets contribue a une planète plus propre',
+      },
+    ],
+  },
 }
 </script>
 
